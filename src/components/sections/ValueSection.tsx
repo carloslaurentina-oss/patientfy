@@ -4,21 +4,21 @@ import { useState } from "react";
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 
-const values = [
+const reasons = [
   {
-    title: "Lorem ipsum",
+    title: "Lorem Ipsum Dolor Sit",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra ornare.",
   },
   {
-    title: "Lorem ipsum",
+    title: "Consectetur Adipiscing",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra ornare.",
   },
   {
-    title: "Lorem ipsum",
+    title: "Suspendisse Varius Enim",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra ornare.",
   },
 ];
 
@@ -41,12 +41,15 @@ export default function ValueSection() {
             <div className="flex flex-col gap-4">
               <Eyebrow variant="dark">Why Us</Eyebrow>
               <h2 className="text-3xl lg:text-4xl font-semibold tracking-tight text-neutral-1000">
-                Curabitur eu porta nibh. Sed sed condimentum risus.
+                Why Us?
               </h2>
+              <p className="text-base text-neutral-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
+              </p>
             </div>
 
             <div className="flex flex-col divide-y divide-neutral-200">
-              {values.map((item, i) => (
+              {reasons.map((item, i) => (
                 <div key={i} className="py-4">
                   <button
                     className="w-full flex items-center justify-between text-left"
@@ -54,9 +57,9 @@ export default function ValueSection() {
                       setActiveIndex(activeIndex === i ? null : i)
                     }
                   >
-                    <h4 className="text-base font-semibold text-neutral-1000">
+                    <h3 className="text-base font-semibold text-neutral-1000">
                       {item.title}
-                    </h4>
+                    </h3>
                     <svg
                       width="20"
                       height="20"

@@ -6,12 +6,15 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "Treatments | Patientfy" };
 
 const treatments = [
-  { title: "Teeth Whitening", description: "Professional whitening for a brighter smile.", slug: "teeth-whitening" },
-  { title: "Dental Implants", description: "Permanent solution for missing teeth.", slug: "dental-implants" },
-  { title: "Veneers", description: "Porcelain veneers for a perfect smile.", slug: "veneers" },
-  { title: "Clear Aligners", description: "Invisible braces for a straighter smile.", slug: "clear-aligners" },
-  { title: "Dental Crowns", description: "Protect and restore damaged teeth.", slug: "dental-crowns" },
-  { title: "Root Canal", description: "Pain-free root canal treatment.", slug: "root-canal" },
+  { title: "Teeth Whitening", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "teeth-whitening" },
+  { title: "Dental Implants", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-implants" },
+  { title: "Veneers", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "veneers" },
+  { title: "Clear Aligners", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "clear-aligners" },
+  { title: "Dental Crowns", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-crowns" },
+  { title: "Root Canal", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "root-canal" },
+  { title: "Dental Bonding", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-bonding" },
+  { title: "Gum Treatment", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "gum-treatment" },
+  { title: "Tooth Extraction", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "tooth-extraction" },
 ];
 
 export default function TreatmentsPage() {
@@ -22,6 +25,9 @@ export default function TreatmentsPage() {
           <div className="max-w-2xl flex flex-col gap-4">
             <Eyebrow variant="light">What we provide</Eyebrow>
             <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">Treatments</h1>
+            <p className="text-base text-white/70">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
+            </p>
           </div>
         </div>
       </section>
@@ -38,8 +44,8 @@ export default function TreatmentsPage() {
                   <h3 className="text-lg font-semibold text-neutral-1000">{t.title}</h3>
                   <p className="text-sm text-neutral-600 flex-1">{t.description}</p>
                   <div className="flex gap-3 pt-2">
-                    <Link href={`/treatments/${t.slug}`} className="button text-sm">Learn more</Link>
-                    <Link href="/contact-us" className="button-secondary-dark text-sm">Book now</Link>
+                    <Link href={`/treatments/${t.slug}`} className="button text-sm">See Treatment</Link>
+                    <Link href="/contact-us" className="button-secondary-dark text-sm">Book Now</Link>
                   </div>
                 </div>
               </div>

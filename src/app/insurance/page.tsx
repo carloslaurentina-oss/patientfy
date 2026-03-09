@@ -34,7 +34,7 @@ export default function InsurancePage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/check-insurance" className="button self-start">Check My Insurance</Link>
+              <Link href="/insurance/check-benefits" className="button self-start">Check My Insurance</Link>
             </div>
             <div className="flex flex-col gap-6">
               <h2 className="text-2xl font-semibold text-neutral-1000">How It Works</h2>

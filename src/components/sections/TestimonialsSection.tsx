@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 const StarIcon = () => (
@@ -12,19 +11,16 @@ const testimonials = [
     quote: "Amazing experience! The team was professional and caring. I highly recommend this dental practice to anyone looking for quality care.",
     author: "John D.",
     meta: "Patient since 2023",
-    image: null,
   },
   {
-    quote: "I've been coming here for years and the service just keeps getting better. Dr. and the whole team make me feel comfortable every visit.",
+    quote: "I've been coming here for years and the service just keeps getting better. The whole team makes me feel comfortable every visit.",
     author: "Sarah M.",
     meta: "Patient since 2021",
-    image: null,
   },
   {
-    quote: "State-of-the-art facility with compassionate staff. They took great care of my whole family.",
+    quote: "State-of-the-art facility with compassionate staff. They took great care of my whole family and made us feel at home.",
     author: "Mike R.",
     meta: "Patient since 2022",
-    image: null,
   },
 ];
 
@@ -38,11 +34,11 @@ export default function TestimonialsSection() {
             <div className="flex flex-col gap-4">
               <Eyebrow variant="dark">Reviews</Eyebrow>
               <h2 className="text-3xl lg:text-4xl font-semibold tracking-tight text-neutral-1000">
-                Lorem Ipsum Dolor
+                Reviews
               </h2>
             </div>
             <p className="text-base text-neutral-600 max-w-sm lg:text-right">
-              Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
             </p>
           </div>
 
@@ -65,12 +61,6 @@ export default function TestimonialsSection() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="flex justify-center">
-            <Link href="/contact-us" className="button">
-              Book Now
-            </Link>
           </div>
         </div>
       </div>

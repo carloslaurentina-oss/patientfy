@@ -10,8 +10,19 @@ const navItems = [
     href: "/about-us",
     dropdown: [
       { label: "Mission", href: "/about-us#mission" },
-      { label: "Team", href: "/team" },
+      { label: "Team", href: "/about-us/team" },
+      { label: "Office", href: "/about-us#office" },
     ],
+  },
+  {
+    label: "Services",
+    href: "/services",
+    dropdown: [],
+  },
+  {
+    label: "Treatments",
+    href: "/treatments",
+    dropdown: [],
   },
   {
     label: "Resources",
@@ -20,11 +31,6 @@ const navItems = [
       { label: "Insurance", href: "/insurance" },
       { label: "Financing", href: "/financing" },
     ],
-  },
-  {
-    label: "Services",
-    href: "/services",
-    dropdown: [],
   },
 ];
 

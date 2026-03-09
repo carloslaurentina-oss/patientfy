@@ -4,15 +4,23 @@ import Logo from "@/components/ui/Logo";
 const footerLinks = {
   "About Us": [
     { label: "Mission", href: "/about-us#mission" },
-    { label: "Team", href: "/team" },
+    { label: "Team", href: "/about-us/team" },
     { label: "Office", href: "/about-us#office" },
     { label: "Reviews", href: "/about-us#reviews" },
+  ],
+  "Services": [
+    { label: "General Dentistry", href: "/services/general-dentistry" },
+    { label: "Cosmetic Dentistry", href: "/services/cosmetic-dentistry" },
+    { label: "Orthodontics", href: "/services/orthodontics" },
   ],
   "Get Started": [
     { label: "Insurance", href: "/insurance" },
     { label: "Financing", href: "/financing" },
     { label: "Contact Us", href: "/contact-us" },
     { label: "Privacy Policy", href: "/privacy-policy" },
+  ],
+  "Locations": [
+    { label: "Location Name", href: "/contact-us" },
   ],
 };
 
@@ -26,7 +34,7 @@ export default function Footer() {
               <Logo className="h-8 w-auto text-white" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 lg:max-w-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 lg:max-w-3xl">
             {Object.entries(footerLinks).map(([title, links]) => (
               <div key={title}>
                 <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4">
@@ -46,18 +54,6 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4">
-                Services
-              </p>
-              <p className="text-sm text-neutral-600 italic">Coming soon</p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4">
-                Location
-              </p>
-              <p className="text-sm text-neutral-600 italic">Coming soon</p>
-            </div>
           </div>
         </div>
       </div>

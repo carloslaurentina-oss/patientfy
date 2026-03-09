@@ -6,12 +6,15 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "Services | Patientfy" };
 
 const services = [
-  { title: "General Dentistry", description: "Comprehensive dental care for your entire family.", slug: "general-dentistry" },
-  { title: "Cosmetic Dentistry", description: "Transform your smile with our cosmetic treatments.", slug: "cosmetic-dentistry" },
-  { title: "Orthodontics", description: "Straighten your teeth with braces or clear aligners.", slug: "orthodontics" },
-  { title: "Oral Surgery", description: "Expert surgical procedures for complex dental issues.", slug: "oral-surgery" },
-  { title: "Periodontics", description: "Specialized care for gum disease and implants.", slug: "periodontics" },
-  { title: "Endodontics", description: "Root canal therapy and pulp treatment specialists.", slug: "endodontics" },
+  { title: "General Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "general-dentistry" },
+  { title: "Cosmetic Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "cosmetic-dentistry" },
+  { title: "Orthodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "orthodontics" },
+  { title: "Oral Surgery", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "oral-surgery" },
+  { title: "Periodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "periodontics" },
+  { title: "Endodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "endodontics" },
+  { title: "Pediatric Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "pediatric-dentistry" },
+  { title: "Dental Implants", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-implants" },
+  { title: "Emergency Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "emergency-dentistry" },
 ];
 
 export default function ServicesPage() {
@@ -21,9 +24,9 @@ export default function ServicesPage() {
         <div className="container-large padding-global">
           <div className="max-w-2xl flex flex-col gap-4">
             <Eyebrow variant="light">What we offer</Eyebrow>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">Our Services</h1>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">Services</h1>
             <p className="text-base text-white/70">
-              Comprehensive dental care tailored to your needs.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
             </p>
           </div>
         </div>
@@ -42,10 +45,10 @@ export default function ServicesPage() {
                   <p className="text-sm text-neutral-600 flex-1">{service.description}</p>
                   <div className="flex gap-3 pt-2">
                     <Link href={`/services/${service.slug}`} className="button text-sm">
-                      See service
+                      See Service
                     </Link>
                     <Link href="/contact-us" className="button-secondary-dark text-sm">
-                      Book now
+                      Book Now
                     </Link>
                   </div>
                 </div>

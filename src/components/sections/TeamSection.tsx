@@ -28,8 +28,11 @@ export default function TeamSection() {
           <div className="flex flex-col gap-4">
             <Eyebrow variant="dark">Our team</Eyebrow>
             <h2 className="text-3xl lg:text-4xl font-semibold tracking-tight text-neutral-1000">
-              Sed sed condimentum risus.
+              Our Team
             </h2>
+            <p className="text-base text-neutral-600 max-w-md">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
+            </p>
           </div>
           <div className="hidden lg:flex items-center gap-2">
             <button
@@ -60,7 +63,7 @@ export default function TeamSection() {
           {team.map((member, i) => (
             <Link
               key={i}
-              href={`/team/${member.slug}`}
+              href={`/about-us/team/${member.slug}`}
               className="flex-shrink-0 snap-start w-64 lg:w-72 border border-neutral-200 bg-white hover:border-primary-500 transition-colors"
             >
               <div className="aspect-[3/4] bg-neutral-100 flex items-center justify-center">
@@ -72,6 +75,12 @@ export default function TeamSection() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-6">
+          <Link href="/about-us/team" className="button-secondary-dark text-sm">
+            Meet Our Team
+          </Link>
         </div>
       </div>
     </section>
