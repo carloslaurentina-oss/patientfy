@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-500: #0ed374;
+  --primary-1000: #01150b;
+  --neutral-1000: #151514;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #0ed374;
+  color: #01150b;
+}
+
+html {
+  font-size: 1.111vw;
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 0.833vw;
+  }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #151514;
+  background: #fdfdfc;
+}
+
+@layer components {
+  .container-large {
+    @apply max-w-[80rem] mx-auto w-full;
+  }
+  .container-medium {
+    @apply max-w-[56rem] mx-auto w-full;
+  }
+  .container-small {
+    @apply max-w-[40rem] mx-auto w-full;
+  }
+  .padding-global {
+    @apply px-6 lg:px-8;
+  }
+  .padding-section-small {
+    @apply py-12 lg:py-16;
+  }
+  .padding-section-medium {
+    @apply py-16 lg:py-24;
+  }
+  .padding-section-large {
+    @apply py-20 lg:py-32;
+  }
+  .button {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-primary-1000 font-semibold text-sm rounded-none transition-all duration-300 hover:bg-primary-600;
+  }
+  .button-secondary-dark {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-neutral-800 text-neutral-1000 font-semibold text-sm rounded-none transition-all duration-300 hover:bg-neutral-100;
+  }
+  .button-secondary-light {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-white/40 text-white font-semibold text-sm rounded-none transition-all duration-300 hover:border-white;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary-600;
+  }
+  .eyebrow-light {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary-300;
+  }
+}
