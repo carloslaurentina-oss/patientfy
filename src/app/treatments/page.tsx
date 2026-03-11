@@ -2,22 +2,25 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_TREATMENTS_QUERY } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = { title: "Treatments | Patientfy" };
 
-const treatments = [
-  { title: "Teeth Whitening", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "teeth-whitening" },
-  { title: "Dental Implants", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-implants" },
-  { title: "Veneers", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "veneers" },
-  { title: "Clear Aligners", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "clear-aligners" },
-  { title: "Dental Crowns", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-crowns" },
-  { title: "Root Canal", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "root-canal" },
-  { title: "Dental Bonding", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-bonding" },
-  { title: "Gum Treatment", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "gum-treatment" },
-  { title: "Tooth Extraction", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "tooth-extraction" },
-];
+type Treatment = {
+  _id: string;
+  title: string;
+  description: string;
+  slug: string;
+  image: string | null;
+};
 
-export default function TreatmentsPage() {
+export default async function TreatmentsPage() {
+  const treatments = await sanityFetch<Treatment[]>({
+    query: ALL_TREATMENTS_QUERY,
+    tags: ["treatment"],
+  });
+
   return (
     <>
       <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
@@ -35,8 +38,8 @@ export default function TreatmentsPage() {
       <section className="padding-section-medium bg-white">
         <div className="container-large padding-global">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {treatments.map((t, i) => (
-              <div key={i} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
+            {treatments.map((t) => (
+              <div key={t._id} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
                 <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center placeholder-cross">
                   <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
                 </div>
