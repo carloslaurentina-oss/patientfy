@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Services | Patientfy" };
 
@@ -44,10 +45,10 @@ export default function ServicesPage() {
                   <h3 className="text-lg font-semibold text-neutral-1000">{service.title}</h3>
                   <p className="text-sm text-neutral-600 flex-1">{service.description}</p>
                   <div className="flex gap-3 pt-2">
-                    <Link href={`/services/${service.slug}`} className="button text-sm">
+                    <Link href={`/services/${service.slug}`} className={buttonVariants()}>
                       See Service
                     </Link>
-                    <Link href="/contact-us" className="button-secondary-dark text-sm">
+                    <Link href="/contact-us" className={buttonVariants({ variant: "secondary-dark" })}>
                       Book Now
                     </Link>
                   </div>

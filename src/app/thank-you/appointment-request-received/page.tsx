@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Appointment Confirmed | Patientfy" };
 
@@ -16,7 +17,7 @@ export default function AppointmentThankYouPage() {
         <p className="text-base text-neutral-600">
           Thank you for scheduling with us. We&apos;ll contact you within 24 hours to confirm your appointment.
         </p>
-        <Link href="/" className="button">Back to Home</Link>
+        <Link href="/" className={buttonVariants()}>Back to Home</Link>
       </div>
     </div>
   );

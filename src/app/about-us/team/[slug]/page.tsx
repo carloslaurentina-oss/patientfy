@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Team Member | Patientfy" };
 
@@ -44,7 +45,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra ornare.
               </p>
               {/* CTA */}
-              <Link href="/contact-us" className="button self-start">Book Now</Link>
+              <Link href="/contact-us" className={buttonVariants({ class: "self-start" })}>Book Now</Link>
             </div>
           </div>
         </div>

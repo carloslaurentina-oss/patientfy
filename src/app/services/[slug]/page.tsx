@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Service | Patientfy" };
 
@@ -30,6 +31,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <p className="text-base text-white/70">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
             </p>
+            <div className="flex gap-3 pt-2">
+              <Link href="/contact-us" className={buttonVariants({ variant: "secondary-light" })}>Book Now</Link>
+              <Link href="/insurance" className={buttonVariants({ variant: "secondary-light" })}>Insurance</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -47,8 +52,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
               </p>
               <div className="flex gap-3">
-                <Link href="/contact-us" className="button self-start">Book Now</Link>
-                <Link href="/contact-us" className="button-secondary-dark self-start">Insurance</Link>
+                <Link href="/contact-us" className={buttonVariants({ class: "self-start" })}>Book Now</Link>
+                <Link href="/insurance" className={buttonVariants({ variant: "secondary-dark", class: "self-start" })}>Insurance</Link>
               </div>
             </div>
             <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center">
@@ -82,10 +87,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <p className="text-sm text-neutral-600 flex-1">{treatment.description}</p>
                   </div>
                   <div className="p-5 pt-0 flex gap-3">
-                    <Link href={`/treatments/${treatment.slug}`} className="button text-sm">
+                    <Link href={`/treatments/${treatment.slug}`} className={buttonVariants()}>
                       See Treatment
                     </Link>
-                    <Link href="/contact-us" className="button-secondary-dark text-sm">
+                    <Link href="/contact-us" className={buttonVariants({ variant: "secondary-dark" })}>
                       Book Now
                     </Link>
                   </div>

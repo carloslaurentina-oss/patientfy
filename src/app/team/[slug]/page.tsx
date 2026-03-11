@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Team Member | Patientfy" };
 
@@ -35,7 +36,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
               <p className="text-base text-neutral-600">
                 Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.
               </p>
-              <Link href="/contact-us" className="button self-start">Book Appointment</Link>
+              <Link href="/contact-us" className={buttonVariants({ class: "self-start" })}>Book Appointment</Link>
             </div>
           </div>
         </div>

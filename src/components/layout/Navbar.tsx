@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
+import { buttonVariants } from "@/components/ui/Button";
 
 const navItems = [
   {
@@ -73,7 +74,8 @@ export default function Navbar() {
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-6">
               {navItems.map((item) => (
-                <div
+                // biome-ignore lint/a11y/noStaticElementInteractions: <explanation>
+                  <div
                   key={item.label}
                   className="relative group"
                   onMouseEnter={() => setOpenDropdown(item.label)}
@@ -92,6 +94,8 @@ export default function Navbar() {
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
+                        aria-hidden="true"
+                        focusable="false"
                         className={`transition-transform duration-200 ${
                           openDropdown === item.label ? "rotate-180" : ""
                         }`}
@@ -137,8 +141,11 @@ export default function Navbar() {
               >
                 <strong>(865) 777-8484</strong>
               </a>
-              <Link href="/contact-us" className="button text-sm">
+              <Link href="/contact-us" className={buttonVariants()}>
                 Book Now
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
+                </svg>
               </Link>
             </div>
 
@@ -208,11 +215,14 @@ export default function Navbar() {
           >
             Contact
           </Link>
-          <div className="flex flex-col gap-3 mt-4">
-            <Link href="/contact-us" className="button text-center" onClick={() => setMobileOpen(false)}>
+          <div className="flex flex-col gap-3 mt-auto pt-8 border-t border-neutral-100">
+            <Link href="/contact-us" className={buttonVariants({ class: "text-center" })} onClick={() => setMobileOpen(false)}>
               Book Now
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
+              </svg>
             </Link>
-            <a href="tel:8657778484" className="button-secondary-dark text-center">
+            <a href="tel:8657778484" className={buttonVariants({ variant: "secondary-dark", class: "text-center" })}>
               (865) 777-8484
             </a>
           </div>

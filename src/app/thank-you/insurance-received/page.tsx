@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Insurance Request Received | Patientfy" };
 
@@ -16,7 +17,7 @@ export default function InsuranceThankYouPage() {
         <p className="text-base text-neutral-600">
           We&apos;ve received your insurance information and will verify your coverage within 1-2 business days.
         </p>
-        <Link href="/" className="button">Back to Home</Link>
+        <Link href="/" className={buttonVariants()}>Back to Home</Link>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "About Us | Patientfy",
@@ -40,7 +41,7 @@ export default function AboutPage() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
             </p>
             <div>
-              <Link href="/about-us/team" className="button">
+              <Link href="/about-us/team" className={buttonVariants()}>
                 Meet Our Team
               </Link>
             </div>

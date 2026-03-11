@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Meet Our Doctor | Patientfy" };
 
@@ -49,7 +50,7 @@ export default function MeetDrPage() {
                   ))}
                 </ul>
               </div>
-              <Link href="/contact-us" className="button self-start">Book with Dr. Smith</Link>
+              <Link href="/contact-us" className={buttonVariants({ class: "self-start" })}>Book with Dr. Smith</Link>
             </div>
           </div>
         </div>

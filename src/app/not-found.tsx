@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
@@ -9,7 +10,7 @@ export default function NotFound() {
         <p className="text-base text-neutral-600 max-w-sm">
           Sorry, we couldn&apos;t find the page you&apos;re looking for.
         </p>
-        <Link href="/" className="button">
+        <Link href="/" className={buttonVariants()}>
           Back to Home
         </Link>
       </div>

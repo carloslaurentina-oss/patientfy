@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { buttonVariants } from "@/components/ui/Button";
 
 const reasons = [
   {
@@ -88,8 +89,11 @@ export default function ValueSection() {
               ))}
             </div>
 
-            <Link href="/about-us" className="button self-start">
+            <Link href="/about-us" className={buttonVariants({ class: "self-start" })}>
               About Us
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
+              </svg>
             </Link>
           </div>
         </div>

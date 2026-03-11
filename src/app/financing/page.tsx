@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Financing | Patientfy" };
 
@@ -38,7 +39,9 @@ export default function FinancingPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/contact-us" className="button self-start">Get Started</Link>
+              <Link href="/contact-us" className={buttonVariants({ class: "self-start" })}>
+                Get Started
+              </Link>
             </div>
             <div className="flex flex-col gap-6">
               <h2 className="text-2xl font-semibold text-neutral-1000">Why Choose Our Financing?</h2>

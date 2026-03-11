@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --primary-500: #0ed374;
@@ -21,7 +21,7 @@
 }
 
 html {
-  font-size: 1.111vw;
+  font-size: 0.988vw;
 }
 
 @media (max-width: 991px) {
@@ -44,13 +44,13 @@ body {
 
 @layer components {
   .container-large {
-    @apply max-w-[80rem] mx-auto w-full;
+    @apply max-w-[80em] mx-auto w-full;
   }
   .container-medium {
-    @apply max-w-[56rem] mx-auto w-full;
+    @apply max-w-[56em] mx-auto w-full;
   }
   .container-small {
-    @apply max-w-[40rem] mx-auto w-full;
+    @apply max-w-[40em] mx-auto w-full;
   }
   .padding-global {
     @apply px-6 lg:px-8;
@@ -64,6 +64,8 @@ body {
   .padding-section-large {
     @apply py-20 lg:py-32;
   }
+
+  /* Legacy button + eyebrow utilities (kept for compatibility) */
   .button {
     @apply inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-primary-1000 font-semibold text-sm rounded-none transition-all duration-300 hover:bg-primary-600;
   }
@@ -78,5 +80,96 @@ body {
   }
   .eyebrow-light {
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary-300;
+  }
+
+  /* ─── Wireframe Utilities ─── */
+
+  /* Cross marker for placeholder areas */
+  .placeholder-cross {
+    position: relative;
+    overflow: hidden;
+  }
+  .placeholder-cross::before,
+  .placeholder-cross::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    opacity: 0.06;
+  }
+  .placeholder-cross::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+  }
+  .placeholder-cross::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+  }
+
+  /* Diagonal cross for placeholder images */
+  .placeholder-diag {
+    position: relative;
+    overflow: hidden;
+  }
+  .placeholder-diag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom right,
+      transparent calc(50% - 0.5px),
+      currentColor calc(50% - 0.5px),
+      currentColor calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+    opacity: 0.06;
+  }
+  .placeholder-diag::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top right,
+      transparent calc(50% - 0.5px),
+      currentColor calc(50% - 0.5px),
+      currentColor calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+    opacity: 0.06;
+  }
+
+  /* Grid dot pattern */
+  .grid-dots {
+    background-image: radial-gradient(circle, #d4d3ce 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+  }
+
+  /* Grid line pattern for dark backgrounds */
+  .grid-lines-dark {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Section number label */
+  .section-number {
+    @apply text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-300;
+    font-variant-numeric: tabular-nums;
+  }
+  .section-number-light {
+    @apply text-[10px] font-medium tracking-[0.3em] uppercase text-white/20;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Card hover */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
   }
 }

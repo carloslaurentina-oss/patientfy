@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Contact Us | Patientfy" };
 
@@ -77,7 +78,7 @@ export default function ContactPage() {
                     placeholder="Tell us about your dental needs..."
                   />
                 </div>
-                <button type="submit" className="button w-full justify-center">
+                <button type="submit" className={buttonVariants({ class: "w-full justify-center" })}>
                   Send Message
                 </button>
               </form>

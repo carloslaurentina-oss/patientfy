@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { buttonVariants } from "@/components/ui/Button";
 
 export const metadata: Metadata = { title: "Check Insurance | Patientfy" };
 
@@ -41,7 +42,7 @@ export default function CheckInsurancePage() {
               <label className="text-sm font-medium text-neutral-700">Date of Birth</label>
               <input type="date" className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors" />
             </div>
-            <button type="submit" className="button w-full justify-center">Submit for Verification</button>
+            <button type="submit" className={buttonVariants({ class: "w-full justify-center" })}>Submit for Verification</button>
           </form>
         </div>
       </section>

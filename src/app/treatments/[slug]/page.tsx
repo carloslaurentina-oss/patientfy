@@ -4,6 +4,7 @@ import { useState } from "react";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
 
 const accordionItems = [
   {
@@ -110,7 +111,7 @@ export default function TreatmentDetailPage({ params }: { params: { slug: string
                 Learn More About {title}
               </h2>
               <Accordion items={accordionItems} />
-              <Link href="/contact-us" className="button self-start">Book Now</Link>
+              <Link href="/contact-us" className={buttonVariants({ class: "self-start" })}>Book Now</Link>
             </div>
             <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center">
               <span className="text-neutral-400 text-sm">Image placeholder</span>

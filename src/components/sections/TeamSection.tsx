@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { buttonVariants } from "@/components/ui/Button";
 
 const team = [
   { name: "Dr. Team Member", role: "Dentist", slug: "dr-team-member" },
@@ -23,7 +24,6 @@ export default function TeamSection() {
   return (
     <section className="padding-section-small bg-neutral-50">
       <div className="container-large padding-global">
-        {/* Header */}
         <div className="flex items-end justify-between mb-8">
           <div className="flex flex-col gap-4">
             <Eyebrow variant="dark">Our team</Eyebrow>
@@ -54,7 +54,6 @@ export default function TeamSection() {
           </div>
         </div>
 
-        {/* Carousel */}
         <div
           ref={scrollRef}
           className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4"
@@ -78,7 +77,7 @@ export default function TeamSection() {
         </div>
 
         <div className="mt-6">
-          <Link href="/about-us/team" className="button-secondary-dark text-sm">
+          <Link href="/about-us/team" className={buttonVariants({ variant: "secondary-dark", class: "text-sm px-4 py-2" })}>
             Meet Our Team
           </Link>
         </div>
