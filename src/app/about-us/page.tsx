@@ -57,23 +57,23 @@ export default function AboutPage() {
               <h2 className="text-3xl font-semibold tracking-tight text-neutral-1000">
                 Our Mission
               </h2>
-              <p className="text-base text-neutral-600">
+              <p className="text-base text-neutral-600 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                 {values.map((value, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-primary-500 flex-shrink-0 mt-2" />
-                    <h3 className="text-base font-semibold text-neutral-1000">{value}</h3>
+                  <div key={i} className="flex items-center gap-3 bg-neutral-50 rounded-xl px-5 py-4 border border-neutral-100">
+                    <span className="w-2 h-2 bg-neutral-1000 rounded-full flex-shrink-0" />
+                    <h3 className="text-sm font-semibold text-neutral-1000">{value}</h3>
                   </div>
                 ))}
               </div>
-              <p className="text-base text-neutral-600">
+              <p className="text-base text-neutral-600 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
               </p>
             </div>
-            <div className="aspect-square bg-neutral-100 flex items-center justify-center">
-              <span className="text-neutral-400 text-sm">Image placeholder</span>
+            <div className="aspect-square bg-neutral-100 rounded-2xl border border-neutral-200 flex items-center justify-center placeholder-cross">
+              <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-semibold tracking-tight text-neutral-1000">
                 Our Team
               </h2>
-              <p className="text-base text-neutral-600">
+              <p className="text-base text-neutral-600 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
               </p>
             </div>
@@ -97,10 +97,10 @@ export default function AboutPage() {
                 <Link
                   key={i}
                   href={`/about-us/team/${member.slug}`}
-                  className="border border-neutral-200 bg-white flex flex-col hover:border-primary-500 transition-colors"
+                  className="border border-neutral-200 bg-white rounded-xl flex flex-col hover:border-neutral-400 transition-colors overflow-hidden"
                 >
-                  <div className="aspect-[3/4] bg-neutral-100 flex items-center justify-center">
-                    <span className="text-neutral-400 text-sm">Image</span>
+                  <div className="aspect-[3/4] bg-neutral-100 flex items-center justify-center placeholder-cross">
+                    <span className="text-neutral-400 text-xs uppercase tracking-widest">Photo</span>
                   </div>
                   <div className="p-4 flex flex-col gap-1">
                     <h3 className="text-base font-semibold text-neutral-1000">{member.name}</h3>
@@ -121,14 +121,14 @@ export default function AboutPage() {
             <h2 className="text-3xl font-semibold tracking-tight text-neutral-1000">
               Our Office
             </h2>
-            <p className="text-base text-neutral-600">
+            <p className="text-base text-neutral-600 leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="aspect-[4/3] bg-neutral-100 flex items-center justify-center">
-                <span className="text-neutral-400 text-sm">Office image</span>
+              <div key={i} className="aspect-[4/3] bg-neutral-100 rounded-xl border border-neutral-200 flex items-center justify-center placeholder-cross">
+                <span className="text-neutral-400 text-xs uppercase tracking-widest">Office</span>
               </div>
             ))}
           </div>

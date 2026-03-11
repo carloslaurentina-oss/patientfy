@@ -36,9 +36,9 @@ export default function TreatmentsPage() {
         <div className="container-large padding-global">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {treatments.map((t, i) => (
-              <div key={i} className="border border-neutral-200 flex flex-col">
-                <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center">
-                  <span className="text-neutral-400 text-sm">Image</span>
+              <div key={i} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
+                <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center placeholder-cross">
+                  <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-1">
                   <h3 className="text-lg font-semibold text-neutral-1000">{t.title}</h3>
