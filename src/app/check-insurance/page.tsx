@@ -22,24 +22,24 @@ export default function CheckInsurancePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium text-neutral-700">First Name</label>
-                <input type="text" className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors" />
+                <input type="text" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors" />
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium text-neutral-700">Last Name</label>
-                <input type="text" className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors" />
+                <input type="text" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors" />
               </div>
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-neutral-700">Insurance Provider</label>
-              <input type="text" className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors" placeholder="e.g. Delta Dental" />
+              <input type="text" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors" placeholder="e.g. Delta Dental" />
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-neutral-700">Member ID</label>
-              <input type="text" className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors" />
+              <input type="text" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors" />
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-neutral-700">Date of Birth</label>
-              <input type="date" className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors" />
+              <input type="date" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors" />
             </div>
             <button type="submit" className="button w-full justify-center">Submit for Verification</button>
           </form>

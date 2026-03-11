@@ -5,6 +5,27 @@ import Link from "next/link";
 
 export const metadata: Metadata = { title: "Financing | Patientfy" };
 
+const boxes = [
+  {
+    title: "Lorem ipsum dolor",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.",
+    cta: "Here goes a CTA",
+  },
+  {
+    title: "Lorem ipsum dolor",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.",
+    cta: "Here goes a CTA",
+  },
+  {
+    title: "Lorem ipsum dolor",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.",
+    cta: "Here goes a CTA",
+  },
+];
+
 export default function FinancingPage() {
   return (
     <>
@@ -20,47 +41,16 @@ export default function FinancingPage() {
 
       <section className="padding-section-medium bg-white">
         <div className="container-large padding-global">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="flex flex-col gap-6">
-              <h2 className="text-2xl font-semibold text-neutral-1000">Payment Plans</h2>
-              <p className="text-base text-neutral-600">
-                We believe everyone deserves quality dental care. That&apos;s why we offer flexible financing options.
-              </p>
-              <div className="flex flex-col gap-4">
-                {[
-                  { name: "CareCredit", desc: "0% interest financing for qualified patients." },
-                  { name: "Sunbit", desc: "Quick approval with flexible monthly payments." },
-                  { name: "In-House Plans", desc: "Our own payment plan with no credit check required." },
-                ].map((plan) => (
-                  <div key={plan.name} className="border border-neutral-200 p-5">
-                    <h4 className="text-base font-semibold text-neutral-1000 mb-1">{plan.name}</h4>
-                    <p className="text-sm text-neutral-600">{plan.desc}</p>
-                  </div>
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {boxes.map((box, i) => (
+              <div key={i} className="border border-neutral-200 rounded-xl p-8 flex flex-col gap-4">
+                <h3 className="text-xl font-semibold text-neutral-1000">{box.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed flex-1">{box.description}</p>
+                <Link href="/contact-us" className="button self-start text-sm">
+                  {box.cta}
+                </Link>
               </div>
-              <Link href="/contact-us" className="button self-start">Get Started</Link>
-            </div>
-            <div className="flex flex-col gap-6">
-              <h2 className="text-2xl font-semibold text-neutral-1000">Why Choose Our Financing?</h2>
-              <ul className="flex flex-col gap-4">
-                {[
-                  "Quick and easy application process",
-                  "Low monthly payments",
-                  "No prepayment penalties",
-                  "Covers all dental procedures",
-                  "Immediate approval decisions",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-neutral-700">
-                    <span className="mt-0.5 w-5 h-5 bg-primary-500 flex items-center justify-center flex-shrink-0">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>

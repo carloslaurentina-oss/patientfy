@@ -30,7 +30,7 @@ export default function ContactPage() {
                     <label className="text-sm font-medium text-neutral-700">First Name</label>
                     <input
                       type="text"
-                      className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors"
+                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors"
                       placeholder="John"
                     />
                   </div>
@@ -38,7 +38,7 @@ export default function ContactPage() {
                     <label className="text-sm font-medium text-neutral-700">Last Name</label>
                     <input
                       type="text"
-                      className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors"
+                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors"
                       placeholder="Doe"
                     />
                   </div>
@@ -47,7 +47,7 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-neutral-700">Email</label>
                   <input
                     type="email"
-                    className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors"
+                    className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -55,13 +55,13 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-neutral-700">Phone</label>
                   <input
                     type="tel"
-                    className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors"
+                    className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors"
                     placeholder="(865) 000-0000"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-sm font-medium text-neutral-700">Service</label>
-                  <select className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors bg-white appearance-none">
+                  <select className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors bg-white appearance-none">
                     <option value="">Select a service</option>
                     <option>General Dentistry</option>
                     <option>Cosmetic Dentistry</option>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-neutral-700">Message</label>
                   <textarea
                     rows={4}
-                    className="border border-neutral-300 px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition-colors resize-none"
+                    className="border border-neutral-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-1000 transition-colors resize-none"
                     placeholder="Tell us about your dental needs..."
                   />
                 </div>
@@ -110,8 +110,8 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-              <div className="aspect-video bg-neutral-100 flex items-center justify-center">
-                <span className="text-neutral-400 text-sm">Map placeholder</span>
+              <div className="aspect-video bg-neutral-100 rounded-xl border border-neutral-200 flex items-center justify-center placeholder-cross">
+                <span className="text-neutral-400 text-xs uppercase tracking-widest">Map</span>
               </div>
             </div>
           </div>
