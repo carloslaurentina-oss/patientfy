@@ -1,70 +1,74 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 export default function HeroSection() {
-  return (
-    <section className="section_hero bg-neutral-1000 text-white min-h-[90vh] flex items-end pt-24 grid-lines-dark relative overflow-hidden">
-      {/* Section number */}
-      <div className="absolute top-28 right-8 hidden lg:block section-number-light">
-        01 / 06
-      </div>
+  const sectionRef = useRef<HTMLElement>(null);
 
-      <div className="container-large padding-global w-full pb-16 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-end">
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const items = el.querySelectorAll(".hero-animate");
+
+    gsap.set(items, { opacity: 0, y: 24 });
+    gsap.set(el.querySelector(".hero-image"), { opacity: 0, y: 24 });
+
+    gsap.to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.12,
+      ease: "power2.out",
+      delay: 0.15,
+    });
+
+    gsap.to(el.querySelector(".hero-image"), {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: 0.4,
+    });
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="section_hero bg-neutral-50 text-neutral-1000 pt-28 lg:pt-32 pb-14 lg:pb-20 relative overflow-hidden">
+      <div className="container-large padding-global w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Content */}
           <div className="flex flex-col gap-6">
-            <Eyebrow variant="light">Dental Care &mdash; Patientfy</Eyebrow>
-            <h1 className="text-4xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-white">
-              Lorem ipsum
-              <br />
-              dolor sit
-              <br />
-              <span className="text-primary-400">amet</span>
+            <div className="hero-animate">
+              <Eyebrow variant="dark">Dental Care &mdash; Patientfy</Eyebrow>
+            </div>
+            <h1 className="hero-animate text-4xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-neutral-1000">
+              Lorem ipsum dolor sit amet
             </h1>
-            <p className="text-base lg:text-lg text-white/50 max-w-md leading-relaxed">
+            <p className="hero-animate text-base lg:text-lg text-neutral-500 max-w-md leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse varius enim in eros elementum tristique.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="hero-animate flex flex-wrap gap-4 pt-2">
               <Button href="/contact-us" variant="primary">
                 Book Now
               </Button>
-              <Button href="/insurance" variant="secondary-light">
+              <Button href="/insurance" variant="secondary-dark">
                 Insurance
               </Button>
-            </div>
-
-            {/* Stats row */}
-            <div className="flex gap-8 pt-8 mt-4 border-t border-white/10">
-              <div>
-                <p className="text-2xl lg:text-3xl font-semibold text-white">15+</p>
-                <p className="text-xs text-white/40 mt-1 uppercase tracking-wider">Years exp.</p>
-              </div>
-              <div>
-                <p className="text-2xl lg:text-3xl font-semibold text-white">10k+</p>
-                <p className="text-xs text-white/40 mt-1 uppercase tracking-wider">Patients</p>
-              </div>
-              <div>
-                <p className="text-2xl lg:text-3xl font-semibold text-white">4.9</p>
-                <p className="text-xs text-white/40 mt-1 uppercase tracking-wider">Rating</p>
-              </div>
             </div>
           </div>
 
           {/* Placeholder image */}
-          <div className="hidden lg:block">
-            <div className="aspect-[4/5] bg-white/[0.03] border border-white/10 placeholder-cross placeholder-diag flex items-center justify-center relative">
-              <span className="text-white/20 text-xs uppercase tracking-widest">Hero Image</span>
-              <span className="absolute -bottom-6 left-0 text-[10px] text-white/15 tracking-widest uppercase">
-                640 &times; 800
-              </span>
+          <div className="hero-image hidden lg:block">
+            <div className="w-full aspect-[1/1] bg-neutral-200/50 border border-neutral-200 rounded-2xl placeholder-cross placeholder-diag flex items-center justify-center relative">
+              <span className="text-neutral-400 text-xs uppercase tracking-widest">Hero Image</span>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom border accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
     </section>
   );
 }

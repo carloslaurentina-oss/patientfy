@@ -1,7 +1,8 @@
 import Eyebrow from "@/components/ui/Eyebrow";
+import AnimateOnScroll, { StaggerChildren } from "@/components/ui/AnimateOnScroll";
 
 const StarIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-primary-500">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-neutral-1000">
     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
   </svg>
 );
@@ -35,52 +36,47 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section id="reviews" className="padding-section-medium bg-white">
+    <section id="reviews" className="padding-section-medium bg-neutral-50">
       <div className="container-large padding-global">
         <div className="flex flex-col gap-12">
           {/* Header */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
+          <AnimateOnScroll>
+            <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
+              <div className="flex flex-col gap-4">
                 <Eyebrow variant="dark">Reviews</Eyebrow>
-                <span className="section-number hidden lg:inline">05 / 06</span>
+                <h2 className="text-3xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">
+                  What Our Patients Say
+                </h2>
               </div>
-              <h2 className="text-3xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">
-                What Our Patients Say
-              </h2>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, j) => <StarIcon key={j} />)}
+              <div className="flex items-center gap-2">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, j) => <StarIcon key={j} />)}
+                </div>
+                <span className="text-sm font-semibold text-neutral-1000 ml-1">4.9</span>
+                <span className="text-sm text-neutral-400">&middot; 200+ reviews</span>
               </div>
-              <span className="text-sm font-semibold text-neutral-1000 ml-1">4.9</span>
-              <span className="text-sm text-neutral-400">&middot; 200+ reviews</span>
             </div>
-          </div>
+          </AnimateOnScroll>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.1}>
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="group border border-neutral-200 p-8 flex flex-col gap-5 hover:border-neutral-400 transition-colors duration-300 relative"
+                className="group bg-white border border-neutral-200 rounded-xl p-8 flex flex-col gap-5 hover:border-neutral-300 transition-colors duration-300 relative"
               >
-                {/* Quote mark */}
                 <QuoteIcon />
 
-                {/* Stars */}
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, j) => <StarIcon key={j} />)}
                 </div>
 
-                {/* Quote text */}
                 <p className="text-sm text-neutral-600 flex-1 leading-relaxed">
                   &ldquo;{t.quote}&rdquo;
                 </p>
 
-                {/* Author */}
                 <div className="flex items-center gap-3 pt-4 border-t border-neutral-100">
-                  <div className="w-9 h-9 bg-neutral-100 flex items-center justify-center">
+                  <div className="w-9 h-9 bg-neutral-100 rounded-full flex items-center justify-center">
                     <span className="text-neutral-400 text-xs font-semibold">
                       {t.author.charAt(0)}
                     </span>
@@ -92,7 +88,7 @@ export default function TestimonialsSection() {
                 </div>
               </div>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 const reasons = [
   {
@@ -31,28 +32,21 @@ export default function ValueSection() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   return (
-    <section id="why-us" className="padding-section-medium bg-white">
+    <section id="why-us" className="padding-section-medium bg-neutral-50">
       <div className="container-large padding-global">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
           {/* Image */}
-          <div className="order-2 lg:order-1 relative">
-            <div className="aspect-[4/5] bg-neutral-100 placeholder-cross placeholder-diag flex items-center justify-center relative">
-              <span className="text-neutral-300 text-xs uppercase tracking-widest">Image</span>
-              <span className="absolute bottom-3 right-3 text-[10px] text-neutral-300 tracking-widest uppercase">
-                4:5
-              </span>
+          <AnimateOnScroll className="order-2 lg:order-1 relative" y={50} duration={0.9}>
+            <div className="aspect-[4/5] bg-neutral-200/50 border border-neutral-200 rounded-2xl placeholder-cross placeholder-diag flex items-center justify-center relative">
+              <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
             </div>
-            {/* Offset accent block */}
-            <div className="hidden lg:block absolute -bottom-4 -right-4 w-24 h-24 border border-primary-500/20" />
-          </div>
+            <div className="hidden lg:block absolute -bottom-4 -right-4 w-24 h-24 border border-neutral-300/40 rounded-xl" />
+          </AnimateOnScroll>
 
           {/* Content */}
-          <div className="order-1 lg:order-2 flex flex-col gap-8">
+          <AnimateOnScroll className="order-1 lg:order-2 flex flex-col gap-8" delay={0.15}>
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <Eyebrow variant="dark">Why Us</Eyebrow>
-                <span className="section-number hidden lg:inline">03 / 06</span>
-              </div>
+              <Eyebrow variant="dark">Why Us</Eyebrow>
               <h2 className="text-3xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">
                 Why Us?
               </h2>
@@ -75,15 +69,6 @@ export default function ValueSection() {
                       className="w-full flex items-center gap-4 text-left py-5 group"
                       onClick={() => setActiveIndex(isActive ? -1 : i)}
                     >
-                      {/* Number */}
-                      <span
-                        className={`text-xs font-medium tabular-nums transition-colors duration-300 ${
-                          isActive ? "text-primary-500" : "text-neutral-300"
-                        }`}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-
                       <h3
                         className={`text-base font-semibold flex-1 transition-colors duration-300 ${
                           isActive ? "text-neutral-1000" : "text-neutral-600 group-hover:text-neutral-1000"
@@ -92,10 +77,9 @@ export default function ValueSection() {
                         {item.title}
                       </h3>
 
-                      {/* Icon */}
                       <div
-                        className={`w-8 h-8 border flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                          isActive ? "border-primary-500 bg-primary-500" : "border-neutral-200 group-hover:border-neutral-400"
+                        className={`w-8 h-8 border flex items-center justify-center flex-shrink-0 transition-all duration-300 rounded-md ${
+                          isActive ? "border-neutral-1000 bg-neutral-1000" : "border-neutral-200 group-hover:border-neutral-400"
                         }`}
                       >
                         <svg
@@ -103,7 +87,7 @@ export default function ValueSection() {
                           height="14"
                           viewBox="0 0 24 24"
                           fill="none"
-                          stroke={isActive ? "#01150b" : "currentColor"}
+                          stroke={isActive ? "white" : "currentColor"}
                           strokeWidth="2"
                           className={`transition-transform duration-300 ${isActive ? "rotate-45" : ""}`}
                         >
@@ -113,13 +97,12 @@ export default function ValueSection() {
                       </div>
                     </button>
 
-                    {/* Content */}
                     <div
                       className={`overflow-hidden transition-all duration-400 ease-in-out ${
                         isActive ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <p className="text-sm text-neutral-500 leading-relaxed pl-8">
+                      <p className="text-sm text-neutral-500 leading-relaxed">
                         {item.content}
                       </p>
                     </div>
@@ -134,7 +117,7 @@ export default function ValueSection() {
                 <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
               </svg>
             </Link>
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

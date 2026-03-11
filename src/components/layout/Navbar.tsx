@@ -104,7 +104,7 @@ export default function Navbar() {
                   </Link>
                   {item.dropdown.length > 0 && (
                     <div
-                      className={`absolute top-full left-0 min-w-[200px] bg-white border border-neutral-100 transition-all duration-200 ${
+                      className={`absolute top-full left-0 min-w-[200px] bg-white border border-neutral-100 rounded-lg overflow-hidden transition-all duration-200 ${
                         openDropdown === item.label
                           ? "opacity-100 translate-y-0 visible"
                           : "opacity-0 -translate-y-1 invisible"
@@ -180,21 +180,16 @@ export default function Navbar() {
         }`}
       >
         <div className="padding-global py-8 flex flex-col gap-6 h-full overflow-y-auto">
-          {navItems.map((item, idx) => (
+          {navItems.map((item) => (
             <div key={item.label} className="border-b border-neutral-100 pb-4">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-[10px] font-medium text-neutral-300 tracking-wider tabular-nums">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <p className="text-base font-semibold text-neutral-1000">
-                  {item.label}
-                </p>
-              </div>
+              <p className="text-base font-semibold text-neutral-1000 mb-3">
+                {item.label}
+              </p>
               {item.dropdown.map((sub) => (
                 <Link
                   key={sub.label}
                   href={sub.href}
-                  className="block py-2 pl-7 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
+                  className="block py-2 pl-4 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {sub.label}
@@ -203,7 +198,7 @@ export default function Navbar() {
               {item.dropdown.length === 0 && (
                 <Link
                   href={item.href}
-                  className="block py-2 pl-7 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
+                  className="block py-2 pl-4 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   View all
