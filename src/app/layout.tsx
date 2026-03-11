@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Patientfy - Dental Practice",
-  description: "Professional dental care services",
+  description: "Professional dental care services for your whole family",
 };
 
 export default function RootLayout({
