@@ -6,12 +6,12 @@ export const metadata: Metadata = { title: "Contact Us | Patientfy" };
 export default function ContactPage() {
   return (
     <>
-      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-1000 text-white">
+      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
         <div className="container-large padding-global">
           <div className="max-w-2xl flex flex-col gap-4">
-            <Eyebrow variant="light">Get in touch</Eyebrow>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">Contact Us</h1>
-            <p className="text-base text-white/70">
+            <Eyebrow variant="dark">Get in touch</Eyebrow>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">Contact Us</h1>
+            <p className="text-base text-neutral-500">
               Schedule an appointment or ask us anything.
             </p>
           </div>

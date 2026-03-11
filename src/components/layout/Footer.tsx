@@ -47,7 +47,7 @@ export default function Footer() {
               <a href="tel:8657778484" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">
                 (865) 777-8484
               </a>
-              <Link href="/contact-us" className="button text-sm">
+              <Link href="/contact-us" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-neutral-1000 font-semibold text-sm rounded-lg transition-all duration-300 hover:bg-neutral-200 hover:gap-3">
                 Book Now
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />

@@ -13,25 +13,27 @@ export default function HeroSection() {
     if (!el) return;
 
     const items = el.querySelectorAll(".hero-animate");
+    const image = el.querySelector(".hero-image");
 
-    gsap.set(items, { opacity: 0, y: 24 });
-    gsap.set(el.querySelector(".hero-image"), { opacity: 0, y: 24 });
+    gsap.set(items, { opacity: 0, y: 50 });
+    gsap.set(image, { opacity: 0, y: 40, scale: 0.96 });
 
     gsap.to(items, {
       opacity: 1,
       y: 0,
-      duration: 0.7,
-      stagger: 0.12,
-      ease: "power2.out",
-      delay: 0.15,
+      duration: 1,
+      stagger: 0.18,
+      ease: "power3.out",
+      delay: 0.2,
     });
 
-    gsap.to(el.querySelector(".hero-image"), {
+    gsap.to(image, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      ease: "power2.out",
-      delay: 0.4,
+      scale: 1,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.5,
     });
   }, []);
 

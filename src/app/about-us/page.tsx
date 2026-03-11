@@ -26,17 +26,17 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-1000 text-white">
+      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
         <div className="container-large padding-global">
           <div className="max-w-2xl flex flex-col gap-6">
-            <Eyebrow variant="light">About us</Eyebrow>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">
+            <Eyebrow variant="dark">About us</Eyebrow>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">
               About Us
             </h1>
-            <p className="text-lg text-white/90 font-medium">
+            <p className="text-lg text-neutral-700 font-medium">
               Lorem ipsum dolor sit amet consectetur adipiscing elit viverra.
             </p>
-            <p className="text-base text-white/70">
+            <p className="text-base text-neutral-500">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique duis cursus viverra.
             </p>
             <div>

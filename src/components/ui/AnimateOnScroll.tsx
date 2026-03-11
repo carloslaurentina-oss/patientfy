@@ -12,7 +12,6 @@ interface AnimateOnScrollProps {
   delay?: number;
   y?: number;
   duration?: number;
-  stagger?: number;
   once?: boolean;
 }
 
@@ -20,8 +19,8 @@ export default function AnimateOnScroll({
   children,
   className = "",
   delay = 0,
-  y = 40,
-  duration = 0.8,
+  y = 60,
+  duration = 1,
   once = true,
 }: AnimateOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,7 +33,7 @@ export default function AnimateOnScroll({
 
     const trigger = ScrollTrigger.create({
       trigger: el,
-      start: "top 90%",
+      start: "top 88%",
       once,
       onEnter: () => {
         gsap.to(el, {
@@ -70,9 +69,9 @@ interface StaggerChildrenProps {
 export function StaggerChildren({
   children,
   className = "",
-  stagger = 0.1,
-  y = 30,
-  duration = 0.7,
+  stagger = 0.15,
+  y = 50,
+  duration = 0.9,
 }: StaggerChildrenProps) {
   const ref = useRef<HTMLDivElement>(null);
 

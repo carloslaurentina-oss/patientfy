@@ -8,11 +8,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const title = params.slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return (
     <>
-      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-1000 text-white">
+      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
         <div className="container-large padding-global">
           <div className="max-w-2xl flex flex-col gap-4">
-            <Eyebrow variant="light">March 1, 2026</Eyebrow>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">{title}</h1>
+            <Eyebrow variant="dark">March 1, 2026</Eyebrow>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">{title}</h1>
           </div>
         </div>
       </section>

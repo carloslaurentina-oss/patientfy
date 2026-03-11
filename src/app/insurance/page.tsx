@@ -8,12 +8,12 @@ export const metadata: Metadata = { title: "Insurance | Patientfy" };
 export default function InsurancePage() {
   return (
     <>
-      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-1000 text-white">
+      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
         <div className="container-large padding-global">
           <div className="max-w-2xl flex flex-col gap-4">
-            <Eyebrow variant="light">Coverage</Eyebrow>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">Insurance</h1>
-            <p className="text-base text-white/70">We work with most major insurance providers.</p>
+            <Eyebrow variant="dark">Coverage</Eyebrow>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">Insurance</h1>
+            <p className="text-base text-neutral-500">We work with most major insurance providers.</p>
           </div>
         </div>
       </section>

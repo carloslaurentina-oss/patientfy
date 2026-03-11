@@ -8,12 +8,12 @@ export const metadata: Metadata = { title: "Financing | Patientfy" };
 export default function FinancingPage() {
   return (
     <>
-      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-1000 text-white">
+      <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
         <div className="container-large padding-global">
           <div className="max-w-2xl flex flex-col gap-4">
-            <Eyebrow variant="light">Payment options</Eyebrow>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-white">Financing</h1>
-            <p className="text-base text-white/70">Flexible payment options to fit your budget.</p>
+            <Eyebrow variant="dark">Payment options</Eyebrow>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-1000">Financing</h1>
+            <p className="text-base text-neutral-500">Flexible payment options to fit your budget.</p>
           </div>
         </div>
       </section>

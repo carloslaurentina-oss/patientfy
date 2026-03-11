@@ -1,19 +1,55 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Eyebrow from "@/components/ui/Eyebrow";
-import AnimateOnScroll, { StaggerChildren } from "@/components/ui/AnimateOnScroll";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const team = [
   { name: "Dr. Team Member", role: "Dentist", slug: "dr-team-member" },
   { name: "Dr. Team Member", role: "Orthodontist", slug: "dr-team-member-2" },
   { name: "Dr. Team Member", role: "Periodontist", slug: "dr-team-member-3" },
   { name: "Dr. Team Member", role: "Endodontist", slug: "dr-team-member-4" },
+  { name: "Dr. Team Member", role: "Oral Surgeon", slug: "dr-team-member-5" },
+  { name: "Dr. Team Member", role: "Prosthodontist", slug: "dr-team-member-6" },
+  { name: "Dr. Team Member", role: "Pediatric Dentist", slug: "dr-team-member-7" },
+  { name: "Dr. Team Member", role: "Cosmetic Dentist", slug: "dr-team-member-8" },
 ];
 
 export default function TeamSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+
+    const items = el.children;
+    gsap.set(items, { opacity: 0, y: 50 });
+
+    const trigger = ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        gsap.to(items, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.1,
+          ease: "power3.out",
+        });
+      },
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, []);
 
   const scroll = (dir: "prev" | "next") => {
     if (!scrollRef.current) return;
@@ -61,33 +97,40 @@ export default function TeamSection() {
             </div>
           </div>
         </AnimateOnScroll>
+      </div>
 
+      <div className="container-large padding-global">
         {/* Carousel */}
-        <StaggerChildren
-          className="flex gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar"
-          stagger={0.12}
+        <div
+          ref={scrollRef}
+          className="overflow-visible snap-x snap-mandatory no-scrollbar"
+          style={{ scrollbarWidth: "none", overflowX: "auto", overflowY: "visible" }}
         >
-          {team.map((member, i) => (
-            <div key={i} className="flex-shrink-0 snap-start w-[280px] lg:w-[300px]" ref={(el) => { if (el) el.style.scrollbarWidth = "none"; }}>
-              <Link
-                href={`/about-us/team/${member.slug}`}
-                className="group block bg-neutral-50 rounded-xl border border-neutral-200 hover:border-neutral-400 transition-all duration-300 card-hover overflow-hidden"
-              >
-                <div className="aspect-[3/4] bg-neutral-200/50 placeholder-cross flex items-center justify-center relative overflow-hidden">
-                  <span className="text-neutral-300 text-xs uppercase tracking-widest">Photo</span>
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-neutral-1000 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </div>
-                <div className="p-5 flex flex-col gap-1">
-                  <h3 className="text-base font-semibold text-neutral-1000 group-hover:text-neutral-700 transition-colors duration-300">
-                    {member.name}
-                  </h3>
-                  <p className="text-sm text-neutral-400">{member.role}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </StaggerChildren>
+          <div ref={carouselRef} className="flex gap-5 w-max pr-[calc(100vw-100%)]">
+            {team.map((member, i) => (
+              <div key={i} className="flex-shrink-0 snap-start w-[280px] lg:w-[300px]">
+                <Link
+                  href={`/about-us/team/${member.slug}`}
+                  className="group block bg-neutral-50 rounded-xl border border-neutral-200 hover:border-neutral-400 transition-all duration-300 card-hover overflow-hidden"
+                >
+                  <div className="aspect-[3/4] bg-neutral-200/50 placeholder-cross flex items-center justify-center relative overflow-hidden">
+                    <span className="text-neutral-300 text-xs uppercase tracking-widest">Photo</span>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-neutral-1000 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  </div>
+                  <div className="p-5 flex flex-col gap-1">
+                    <h3 className="text-base font-semibold text-neutral-1000 group-hover:text-neutral-700 transition-colors duration-300">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-neutral-400">{member.role}</p>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
+      <div className="container-large padding-global">
         {/* Footer link */}
         <AnimateOnScroll>
           <div className="mt-8 pt-8 border-t border-neutral-200 flex items-center justify-between">
