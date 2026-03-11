@@ -34,7 +34,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-lg font-semibold text-neutral-1000">Appointments</h3>
               <p className="text-sm text-neutral-500 leading-relaxed">
-                Book your visit online in just a few clicks. We'll confirm your appointment within 24 hours.
+                Book your visit online in just a few clicks. We&apos;ll confirm your appointment within 24 hours.
               </p>
               <Link href="/locations/book-city-state" className="button self-start text-sm mt-1">
                 Book Now
