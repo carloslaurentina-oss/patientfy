@@ -51,6 +51,19 @@ export default function TeamSection() {
     };
   }, []);
 
+  // Prevent mouse wheel from scrolling carousel horizontally
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleWheel = (e: WheelEvent) => {
+      // Let the page scroll vertically as normal
+      e.preventDefault();
+      window.scrollBy({ top: e.deltaY, behavior: "auto" });
+    };
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, []);
+
   const scroll = (dir: "prev" | "next") => {
     if (!scrollRef.current) return;
     const width = scrollRef.current.offsetWidth;

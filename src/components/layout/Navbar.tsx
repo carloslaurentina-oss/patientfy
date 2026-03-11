@@ -17,12 +17,17 @@ const navItems = [
   {
     label: "Services",
     href: "/services",
-    dropdown: [],
-  },
-  {
-    label: "Treatments",
-    href: "/treatments",
-    dropdown: [],
+    dropdown: [
+      { label: "General Dentistry", href: "/services/general-dentistry" },
+      { label: "Cosmetic Dentistry", href: "/services/cosmetic-dentistry" },
+      { label: "Orthodontics", href: "/services/orthodontics" },
+      { label: "Oral Surgery", href: "/services/oral-surgery" },
+      { label: "Periodontics", href: "/services/periodontics" },
+      { label: "Endodontics", href: "/services/endodontics" },
+      { label: "Pediatric Dentistry", href: "/services/pediatric-dentistry" },
+      { label: "Dental Implants", href: "/services/dental-implants" },
+      { label: "Emergency Dentistry", href: "/services/emergency-dentistry" },
+    ],
   },
   {
     label: "Resources",
@@ -39,6 +44,7 @@ export default function Navbar() {
   const [isHidden, setIsHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
@@ -179,29 +185,67 @@ export default function Navbar() {
           mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="padding-global py-8 flex flex-col gap-6 h-full overflow-y-auto">
+        <div className="padding-global py-8 flex flex-col gap-2 h-full overflow-y-auto">
           {navItems.map((item) => (
-            <div key={item.label} className="border-b border-neutral-100 pb-4">
-              <p className="text-base font-semibold text-neutral-1000 mb-3">
-                {item.label}
-              </p>
-              {item.dropdown.map((sub) => (
-                <Link
-                  key={sub.label}
-                  href={sub.href}
-                  className="block py-2 pl-4 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {sub.label}
-                </Link>
-              ))}
-              {item.dropdown.length === 0 && (
+            <div key={item.label} className="border-b border-neutral-100 pb-2">
+              {item.dropdown.length > 0 ? (
+                <>
+                  <button
+                    className="flex items-center justify-between w-full py-3 text-base font-semibold text-neutral-1000"
+                    onClick={() =>
+                      setMobileDropdown(
+                        mobileDropdown === item.label ? null : item.label
+                      )
+                    }
+                  >
+                    {item.label}
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className={`transition-transform duration-200 ${
+                        mobileDropdown === item.label ? "rotate-180" : ""
+                      }`}
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      mobileDropdown === item.label
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <Link
+                      href={item.href}
+                      className="block py-2 pl-4 text-sm font-medium text-neutral-1000 hover:text-neutral-600 transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      View All
+                    </Link>
+                    {item.dropdown.map((sub) => (
+                      <Link
+                        key={sub.label}
+                        href={sub.href}
+                        className="block py-2 pl-4 text-sm text-neutral-500 hover:text-neutral-1000 transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
                 <Link
                   href={item.href}
-                  className="block py-2 pl-4 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
+                  className="block py-3 text-base font-semibold text-neutral-1000"
                   onClick={() => setMobileOpen(false)}
                 >
-                  View all
+                  {item.label}
                 </Link>
               )}
             </div>

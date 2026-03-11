@@ -12,6 +12,12 @@ const footerLinks = {
     { label: "General Dentistry", href: "/services/general-dentistry" },
     { label: "Cosmetic Dentistry", href: "/services/cosmetic-dentistry" },
     { label: "Orthodontics", href: "/services/orthodontics" },
+    { label: "Oral Surgery", href: "/services/oral-surgery" },
+    { label: "Periodontics", href: "/services/periodontics" },
+    { label: "Endodontics", href: "/services/endodontics" },
+    { label: "Pediatric Dentistry", href: "/services/pediatric-dentistry" },
+    { label: "Dental Implants", href: "/services/dental-implants" },
+    { label: "Emergency Dentistry", href: "/services/emergency-dentistry" },
   ],
   "Get Started": [
     { label: "Insurance", href: "/insurance" },

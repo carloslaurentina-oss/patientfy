@@ -42,12 +42,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       <section className="padding-section-medium bg-white">
         <div className="container-large padding-global">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4 max-w-xl">
-              <Eyebrow variant="dark">Treatments</Eyebrow>
-              <h2 className="text-3xl font-semibold tracking-tight text-neutral-1000">
-                Related Treatments
-              </h2>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {treatments.map((treatment, i) => (
                 <div key={i} className="border border-neutral-200 bg-white rounded-xl flex flex-col overflow-hidden">
