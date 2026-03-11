@@ -60,18 +60,20 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-neutral-25/95 backdrop-blur-sm shadow-sm" : "bg-neutral-25"
+          isScrolled
+            ? "bg-neutral-25/95 backdrop-blur-md border-b border-neutral-200/50"
+            : "bg-neutral-25"
         } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
       >
         <div className="container-large padding-global">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <Logo className="h-8 w-auto text-neutral-1000" />
+              <Logo className="h-7 w-auto text-neutral-1000" />
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -81,13 +83,13 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className="flex items-center gap-1 text-sm font-medium text-neutral-800 hover:text-neutral-1000 transition-colors py-2"
+                    className="flex items-center gap-1 text-sm font-medium text-neutral-600 hover:text-neutral-1000 transition-colors px-3 py-2"
                   >
                     {item.label}
                     {item.dropdown.length > 0 && (
                       <svg
-                        width="16"
-                        height="16"
+                        width="14"
+                        height="14"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -102,17 +104,17 @@ export default function Navbar() {
                   </Link>
                   {item.dropdown.length > 0 && (
                     <div
-                      className={`absolute top-full left-0 min-w-[180px] bg-white border border-neutral-100 shadow-lg transition-all duration-200 ${
+                      className={`absolute top-full left-0 min-w-[200px] bg-white border border-neutral-100 transition-all duration-200 ${
                         openDropdown === item.label
                           ? "opacity-100 translate-y-0 visible"
-                          : "opacity-0 -translate-y-2 invisible"
+                          : "opacity-0 -translate-y-1 invisible"
                       }`}
                     >
                       {item.dropdown.map((sub) => (
                         <Link
                           key={sub.label}
                           href={sub.href}
-                          className="block px-4 py-3 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-neutral-1000 transition-colors"
+                          className="block px-4 py-3 text-sm text-neutral-600 hover:bg-neutral-50 hover:text-neutral-1000 transition-colors border-b border-neutral-50 last:border-b-0"
                         >
                           {sub.label}
                         </Link>
@@ -123,7 +125,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="/contact-us"
-                className="text-sm font-medium text-neutral-800 hover:text-neutral-1000 transition-colors"
+                className="text-sm font-medium text-neutral-600 hover:text-neutral-1000 transition-colors px-3 py-2"
               >
                 Contact
               </Link>
@@ -133,12 +135,15 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-3">
               <a
                 href="tel:8657778484"
-                className="button-secondary-dark text-sm"
+                className="text-sm font-medium text-neutral-600 hover:text-neutral-1000 transition-colors"
               >
-                <strong>(865) 777-8484</strong>
+                (865) 777-8484
               </a>
               <Link href="/contact-us" className="button text-sm">
                 Book Now
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
+                </svg>
               </Link>
             </div>
 
@@ -175,16 +180,21 @@ export default function Navbar() {
         }`}
       >
         <div className="padding-global py-8 flex flex-col gap-6 h-full overflow-y-auto">
-          {navItems.map((item) => (
+          {navItems.map((item, idx) => (
             <div key={item.label} className="border-b border-neutral-100 pb-4">
-              <p className="text-base font-semibold text-neutral-1000 mb-3">
-                {item.label}
-              </p>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-[10px] font-medium text-neutral-300 tracking-wider tabular-nums">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <p className="text-base font-semibold text-neutral-1000">
+                  {item.label}
+                </p>
+              </div>
               {item.dropdown.map((sub) => (
                 <Link
                   key={sub.label}
                   href={sub.href}
-                  className="block py-2 text-sm text-neutral-600 hover:text-primary-500"
+                  className="block py-2 pl-7 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {sub.label}
@@ -193,7 +203,7 @@ export default function Navbar() {
               {item.dropdown.length === 0 && (
                 <Link
                   href={item.href}
-                  className="block py-2 text-sm text-neutral-600 hover:text-primary-500"
+                  className="block py-2 pl-7 text-sm text-neutral-500 hover:text-primary-600 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   View all
@@ -208,9 +218,12 @@ export default function Navbar() {
           >
             Contact
           </Link>
-          <div className="flex flex-col gap-3 mt-4">
+          <div className="flex flex-col gap-3 mt-auto pt-8 border-t border-neutral-100">
             <Link href="/contact-us" className="button text-center" onClick={() => setMobileOpen(false)}>
               Book Now
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
+              </svg>
             </Link>
             <a href="tel:8657778484" className="button-secondary-dark text-center">
               (865) 777-8484

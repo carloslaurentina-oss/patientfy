@@ -27,25 +27,51 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="bg-neutral-1000 text-white">
-      <div className="container-large padding-global py-12 lg:py-16">
-        <div className="flex flex-col lg:flex-row gap-10 justify-between">
-          <div className="flex-shrink-0">
-            <Link href="/">
-              <Logo className="h-8 w-auto text-white" />
-            </Link>
+      {/* Main footer */}
+      <div className="container-large padding-global py-16 lg:py-20">
+        <div className="flex flex-col gap-12">
+          {/* Top row: logo + description */}
+          <div className="flex flex-col lg:flex-row gap-8 justify-between items-start">
+            <div className="flex flex-col gap-4 max-w-xs">
+              <Link href="/">
+                <Logo className="h-7 w-auto text-white" />
+              </Link>
+              <p className="text-sm text-neutral-500 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse varius enim.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="flex items-center gap-4">
+              <a href="tel:8657778484" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">
+                (865) 777-8484
+              </a>
+              <Link href="/contact-us" className="button text-sm">
+                Book Now
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="square" />
+                </svg>
+              </Link>
+            </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 lg:max-w-3xl">
+
+          {/* Divider */}
+          <div className="h-px bg-neutral-900" />
+
+          {/* Links grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {Object.entries(footerLinks).map(([title, links]) => (
               <div key={title}>
-                <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 mb-5">
                   {title}
                 </p>
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-3">
                   {links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-sm text-neutral-400 hover:text-white transition-colors"
+                        className="text-sm text-neutral-500 hover:text-white transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -57,26 +83,28 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Bottom bar */}
       <div className="border-t border-neutral-900">
-        <div className="container-large padding-global py-4 flex flex-col sm:flex-row justify-between gap-2">
-          <p className="text-xs text-neutral-500">
+        <div className="container-large padding-global py-5 flex flex-col sm:flex-row justify-between gap-3">
+          <p className="text-xs text-neutral-600">
             <a
               href="https://patientfy.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-neutral-300 transition-colors"
+              className="hover:text-neutral-400 transition-colors"
             >
-              Copyright © 2026 Patientfy.com
+              Copyright &copy; 2026 Patientfy.com
             </a>
           </p>
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-neutral-600">
             <a
               href="https://patientfy.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-neutral-300 transition-colors"
+              className="hover:text-neutral-400 transition-colors"
             >
-              Site Monitored & Protected by DMCA
+              Site Monitored &amp; Protected by DMCA
             </a>
           </p>
         </div>
