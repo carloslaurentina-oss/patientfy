@@ -35,6 +35,7 @@ const navItems = [
     dropdown: [
       { label: "Insurance", href: "/insurance" },
       { label: "Financing", href: "/financing" },
+      { label: "Blog", href: "/blog" },
     ],
   },
 ];

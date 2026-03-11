@@ -22,6 +22,7 @@ const footerLinks = {
   "Get Started": [
     { label: "Insurance", href: "/insurance" },
     { label: "Financing", href: "/financing" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact Us", href: "/contact-us" },
     { label: "Privacy Policy", href: "/privacy-policy" },
   ],
