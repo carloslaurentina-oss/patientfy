@@ -5,6 +5,8 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+
 const accordionItems = [
   {
     title: "What It Is",

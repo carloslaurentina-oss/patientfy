@@ -3,6 +3,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: "Team Member | Patientfy" };
 
 export default function TeamMemberPage({ params }: { params: { slug: string } }) {
