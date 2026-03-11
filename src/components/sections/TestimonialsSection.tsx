@@ -1,5 +1,7 @@
 import Eyebrow from "@/components/ui/Eyebrow";
 import AnimateOnScroll, { StaggerChildren } from "@/components/ui/AnimateOnScroll";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_TESTIMONIALS_QUERY } from "@/sanity/lib/queries";
 
 const StarIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-neutral-1000">
@@ -16,25 +18,20 @@ const QuoteIcon = () => (
   </svg>
 );
 
-const testimonials = [
-  {
-    quote: "Amazing experience! The team was professional and caring. I highly recommend this dental practice to anyone looking for quality care.",
-    author: "John D.",
-    meta: "Patient since 2023",
-  },
-  {
-    quote: "I've been coming here for years and the service just keeps getting better. The whole team makes me feel comfortable every visit.",
-    author: "Sarah M.",
-    meta: "Patient since 2021",
-  },
-  {
-    quote: "State-of-the-art facility with compassionate staff. They took great care of my whole family and made us feel at home.",
-    author: "Mike R.",
-    meta: "Patient since 2022",
-  },
-];
+type Testimonial = {
+  _id: string;
+  quote: string;
+  authorName: string;
+  authorMeta: string;
+  rating: number;
+};
 
-export default function TestimonialsSection() {
+export default async function TestimonialsSection() {
+  const testimonials = await sanityFetch<Testimonial[]>({
+    query: ALL_TESTIMONIALS_QUERY,
+    tags: ["testimonial"],
+  });
+
   return (
     <section id="reviews" className="padding-section-medium bg-neutral-50">
       <div className="container-large padding-global">
@@ -60,9 +57,9 @@ export default function TestimonialsSection() {
 
           {/* Grid */}
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.1}>
-            {testimonials.map((t, i) => (
+            {testimonials.map((t) => (
               <div
-                key={i}
+                key={t._id}
                 className="group bg-white border border-neutral-200 rounded-xl p-8 flex flex-col gap-5 hover:border-neutral-300 transition-colors duration-300 relative"
               >
                 <QuoteIcon />
@@ -78,12 +75,12 @@ export default function TestimonialsSection() {
                 <div className="flex items-center gap-3 pt-4 border-t border-neutral-100">
                   <div className="w-9 h-9 bg-neutral-100 rounded-full flex items-center justify-center">
                     <span className="text-neutral-400 text-xs font-semibold">
-                      {t.author.charAt(0)}
+                      {t.authorName.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-neutral-1000">{t.author}</p>
-                    <p className="text-xs text-neutral-400">{t.meta}</p>
+                    <p className="text-sm font-semibold text-neutral-1000">{t.authorName}</p>
+                    <p className="text-xs text-neutral-400">{t.authorMeta}</p>
                   </div>
                 </div>
               </div>

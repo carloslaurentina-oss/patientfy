@@ -1,20 +1,22 @@
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 import AnimateOnScroll, { StaggerChildren } from "@/components/ui/AnimateOnScroll";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_SERVICES_QUERY } from "@/sanity/lib/queries";
 
-const services = [
-  { title: "General Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "general-dentistry" },
-  { title: "Cosmetic Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "cosmetic-dentistry" },
-  { title: "Orthodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "orthodontics" },
-  { title: "Oral Surgery", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "oral-surgery" },
-  { title: "Periodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "periodontics" },
-  { title: "Endodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "endodontics" },
-  { title: "Pediatric Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "pediatric-dentistry" },
-  { title: "Dental Implants", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-implants" },
-  { title: "Emergency Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "emergency-dentistry" },
-];
+type Service = {
+  _id: string;
+  title: string;
+  description: string;
+  slug: string;
+  image: string | null;
+};
 
-export default function ServicesSection() {
+export default async function ServicesSection() {
+  const services = await sanityFetch<Service[]>({
+    query: ALL_SERVICES_QUERY,
+    tags: ["service"],
+  });
   return (
     <section className="py-16 lg:py-24 bg-white relative">
       <div className="container-large padding-global">
@@ -43,9 +45,9 @@ export default function ServicesSection() {
 
           {/* Grid */}
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" stagger={0.08}>
-            {services.map((service, i) => (
+            {services.map((service) => (
               <Link
-                key={i}
+                key={service._id}
                 href={`/services/${service.slug}`}
                 className="group bg-neutral-50 rounded-xl flex flex-col hover:bg-neutral-100/80 transition-colors duration-300 overflow-hidden"
               >

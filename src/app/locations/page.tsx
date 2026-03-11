@@ -2,37 +2,29 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Link from "next/link";
 import CTASection from "@/components/sections/CTASection";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_LOCATIONS_QUERY } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = { title: "Locations | Patientfy" };
 
-const locations = [
-  {
-    name: "Aliso Viejo",
-    address: "23411 Aliso Viejo Pkwy, Suite D",
-    city: "Aliso Viejo, CA 92656",
-    phone: "(949) 781-0050",
-    hours: "Mon–Fri: 9 AM–5 PM",
-    slug: "book-city-state",
-  },
-  {
-    name: "Irvine",
-    address: "1234 Main Street, Suite 100",
-    city: "Irvine, CA 92618",
-    phone: "(949) 000-0000",
-    hours: "Mon–Fri: 9 AM–5 PM",
-    slug: "book-city-state",
-  },
-  {
-    name: "Newport Beach",
-    address: "5678 Coast Hwy, Suite 200",
-    city: "Newport Beach, CA 92660",
-    phone: "(949) 000-0000",
-    hours: "Mon–Fri: 9 AM–5 PM",
-    slug: "book-city-state",
-  },
-];
+type Location = {
+  _id: string;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+  slug: string;
+  hours: any;
+};
 
-export default function LocationsPage() {
+export default async function LocationsPage() {
+  const locations = await sanityFetch<Location[]>({
+    query: ALL_LOCATIONS_QUERY,
+    tags: ["location"],
+  });
+
   return (
     <>
       <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
@@ -52,7 +44,7 @@ export default function LocationsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {locations.map((location) => (
               <div
-                key={location.name}
+                key={location._id}
                 className="border border-neutral-200 rounded-xl p-8 flex flex-col gap-5 hover:border-neutral-400 transition-colors"
               >
                 <div className="flex items-center gap-3">
@@ -67,11 +59,11 @@ export default function LocationsPage() {
 
                 <div className="flex flex-col gap-1.5 text-sm text-neutral-500">
                   <p>{location.address}</p>
-                  <p>{location.city}</p>
+                  <p>{`${location.city}, ${location.state} ${location.zip}`}</p>
                   <p>{location.phone}</p>
                 </div>
 
-                <p className="text-sm text-neutral-400">{location.hours}</p>
+                <p className="text-sm text-neutral-400">{`Mon–Fri: ${location.hours?.monday || "9 AM–5 PM"}`}</p>
 
                 <div className="flex gap-3 mt-auto pt-2">
                   <Link
@@ -81,7 +73,7 @@ export default function LocationsPage() {
                     Book Now
                   </Link>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address + " " + location.city)}`}
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address + " " + location.city + ", " + location.state + " " + location.zip)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-neutral-1000 underline underline-offset-4 hover:text-neutral-600 transition-colors flex items-center"

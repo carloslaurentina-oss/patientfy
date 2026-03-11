@@ -4,14 +4,21 @@ import ValueSection from "@/components/sections/ValueSection";
 import TeamSection from "@/components/sections/TeamSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CTASection from "@/components/sections/CTASection";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_TEAM_MEMBERS_QUERY } from "@/sanity/lib/queries";
 
-export default function Home() {
+export default async function Home() {
+  const team = await sanityFetch<any[]>({
+    query: ALL_TEAM_MEMBERS_QUERY,
+    tags: ["teamMember"],
+  });
+
   return (
     <>
       <HeroSection />
       <ServicesSection />
       <ValueSection />
-      <TeamSection />
+      <TeamSection team={team} />
       <TestimonialsSection />
       <CTASection />
     </>

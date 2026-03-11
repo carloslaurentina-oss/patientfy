@@ -3,17 +3,12 @@ import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_TEAM_MEMBERS_QUERY } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "About Us | Patientfy",
 };
-
-const team = [
-  { name: "Dr. Team Member", role: "Dentist", slug: "dr-team-member" },
-  { name: "Dr. Team Member", role: "Orthodontist", slug: "dr-team-member-2" },
-  { name: "Dr. Team Member", role: "Periodontist", slug: "dr-team-member-3" },
-  { name: "Dr. Team Member", role: "Endodontist", slug: "dr-team-member-4" },
-];
 
 const values = [
   "Lorem Ipsum Dolor Sit",
@@ -22,7 +17,19 @@ const values = [
   "Duis Cursus Viverra",
 ];
 
-export default function AboutPage() {
+type TeamMember = {
+  _id: string;
+  name: string;
+  role: string;
+  slug: string;
+  image: string | null;
+};
+
+export default async function AboutPage() {
+  const team = await sanityFetch<TeamMember[]>({
+    query: ALL_TEAM_MEMBERS_QUERY,
+    tags: ["teamMember"],
+  });
   return (
     <>
       {/* Hero */}
@@ -93,9 +100,9 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {team.map((member, i) => (
+              {team.map((member) => (
                 <Link
-                  key={i}
+                  key={member._id}
                   href={`/about-us/team/${member.slug}`}
                   className="border border-neutral-200 bg-white rounded-xl flex flex-col hover:border-neutral-400 transition-colors overflow-hidden"
                 >

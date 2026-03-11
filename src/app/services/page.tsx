@@ -2,22 +2,24 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { ALL_SERVICES_QUERY } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = { title: "Services | Patientfy" };
 
-const services = [
-  { title: "General Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "general-dentistry" },
-  { title: "Cosmetic Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "cosmetic-dentistry" },
-  { title: "Orthodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "orthodontics" },
-  { title: "Oral Surgery", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "oral-surgery" },
-  { title: "Periodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "periodontics" },
-  { title: "Endodontics", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "endodontics" },
-  { title: "Pediatric Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "pediatric-dentistry" },
-  { title: "Dental Implants", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "dental-implants" },
-  { title: "Emergency Dentistry", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, suspendisse varius enim in eros.", slug: "emergency-dentistry" },
-];
+type Service = {
+  _id: string;
+  title: string;
+  description: string;
+  slug: string;
+  image: string | null;
+};
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await sanityFetch<Service[]>({
+    query: ALL_SERVICES_QUERY,
+    tags: ["service"],
+  });
   return (
     <>
       <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
@@ -35,8 +37,8 @@ export default function ServicesPage() {
       <section className="padding-section-medium bg-white">
         <div className="container-large padding-global">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <div key={i} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
+            {services.map((service) => (
+              <div key={service._id} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
                 <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center placeholder-cross">
                   <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
                 </div>

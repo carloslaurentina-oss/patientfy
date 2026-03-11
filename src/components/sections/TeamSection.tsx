@@ -9,18 +9,15 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const team = [
-  { name: "Dr. Team Member", role: "Dentist", slug: "dr-team-member" },
-  { name: "Dr. Team Member", role: "Orthodontist", slug: "dr-team-member-2" },
-  { name: "Dr. Team Member", role: "Periodontist", slug: "dr-team-member-3" },
-  { name: "Dr. Team Member", role: "Endodontist", slug: "dr-team-member-4" },
-  { name: "Dr. Team Member", role: "Oral Surgeon", slug: "dr-team-member-5" },
-  { name: "Dr. Team Member", role: "Prosthodontist", slug: "dr-team-member-6" },
-  { name: "Dr. Team Member", role: "Pediatric Dentist", slug: "dr-team-member-7" },
-  { name: "Dr. Team Member", role: "Cosmetic Dentist", slug: "dr-team-member-8" },
-];
+type TeamMember = {
+  _id: string;
+  name: string;
+  role: string;
+  slug: string;
+  image: string | null;
+};
 
-export default function TeamSection() {
+export default function TeamSection({ team }: { team: TeamMember[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -120,8 +117,8 @@ export default function TeamSection() {
           style={{ scrollbarWidth: "none", overflowX: "auto", overflowY: "visible" }}
         >
           <div ref={carouselRef} className="flex gap-5 w-max pr-[calc(100vw-100%)]">
-            {team.map((member, i) => (
-              <div key={i} className="flex-shrink-0 snap-start w-[280px] lg:w-[300px]">
+            {team.map((member) => (
+              <div key={member._id} className="flex-shrink-0 snap-start w-[280px] lg:w-[300px]">
                 <Link
                   href={`/about-us/team/${member.slug}`}
                   className="group block bg-neutral-50 rounded-xl border border-neutral-200 hover:border-neutral-400 transition-all duration-300 card-hover overflow-hidden"
