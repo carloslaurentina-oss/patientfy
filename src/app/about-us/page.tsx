@@ -6,6 +6,8 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { payloadFetchAll } from "@/lib/payload/client";
 import type { TeamMember } from "@/lib/payload/types";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "About Us | Patientfy",
 };

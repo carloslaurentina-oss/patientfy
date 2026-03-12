@@ -5,6 +5,7 @@ import Link from "next/link";
 import { payloadFetchAll } from "@/lib/payload/client";
 import type { Treatment } from "@/lib/payload/types";
 
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Treatments | Patientfy" };
 
 export default async function TreatmentsPage() {

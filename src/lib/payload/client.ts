@@ -48,17 +48,23 @@ export async function payloadFetch<T>(
   }
 
   const url = `${PAYLOAD_URL}/api/${collection}?${params.toString()}`;
+  const empty: PayloadResponse<T> = { docs: [], totalDocs: 0, totalPages: 0, page: 1, hasNextPage: false, hasPrevPage: false };
 
-  const res = await fetch(url, {
-    next: { revalidate: 60 },
-  });
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 60 },
+    });
 
-  if (!res.ok) {
-    console.error(`Payload API error: ${res.status} ${res.statusText} — ${url}`);
-    return { docs: [], totalDocs: 0, totalPages: 0, page: 1, hasNextPage: false, hasPrevPage: false };
+    if (!res.ok) {
+      console.error(`Payload API error: ${res.status} ${res.statusText} — ${url}`);
+      return empty;
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(`Payload API unreachable: ${url}`, error);
+    return empty;
   }
-
-  return res.json();
 }
 
 export async function payloadFetchOne<T>(

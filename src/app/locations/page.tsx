@@ -5,6 +5,7 @@ import CTASection from "@/components/sections/CTASection";
 import { payloadFetchAll } from "@/lib/payload/client";
 import type { Location } from "@/lib/payload/types";
 
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Locations | Patientfy" };
 
 export default async function LocationsPage() {
