@@ -2,25 +2,11 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { BLOG_POST_BY_SLUG_QUERY } from "@/sanity/lib/queries";
-import { PortableText } from "@portabletext/react";
+import { payloadFetchBySlug } from "@/lib/payload/client";
+import type { BlogPost } from "@/lib/payload/types";
+import RichText from "@/components/ui/RichText";
 
 export const dynamic = "force-dynamic";
-
-type BlogPost = {
-  _id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  slug: string;
-  publishedAt: string;
-  featuredImage: string | null;
-  body: any[];
-  author: { _id: string; name: string; role: string; image: string | null } | null;
-  relatedPosts: { _id: string; title: string; slug: string }[] | null;
-  seo: { title: string; description: string } | null;
-};
 
 export async function generateMetadata({
   params,
@@ -28,11 +14,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await sanityFetch<BlogPost | null>({
-    query: BLOG_POST_BY_SLUG_QUERY,
-    params: { slug },
-    tags: ["blogPost"],
-  });
+  const post = await payloadFetchBySlug<BlogPost>("blog-posts", slug);
   return { title: post?.seo?.title || `${post?.title || "Blog"} | Patientfy` };
 }
 
@@ -42,19 +24,19 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await sanityFetch<BlogPost | null>({
-    query: BLOG_POST_BY_SLUG_QUERY,
-    params: { slug },
-    tags: ["blogPost"],
-  });
+  const post = await payloadFetchBySlug<BlogPost>("blog-posts", slug);
 
   if (!post) notFound();
 
-  const dateFormatted = new Date(post.publishedAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const dateFormatted = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
+
+  const relatedPosts = (post.relatedPosts || []) as BlogPost[];
 
   return (
     <>
@@ -80,9 +62,10 @@ export default async function BlogPostPage({
                 </span>
               </div>
               {post.body ? (
-                <div className="flex flex-col gap-4 text-base text-neutral-600 leading-relaxed [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-neutral-1000 [&>h2]:mt-4 [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2 [&>ul]:pl-5 [&>ul>li]:list-disc">
-                  <PortableText value={post.body} />
-                </div>
+                <RichText
+                  content={post.body}
+                  className="flex flex-col gap-4 text-base text-neutral-600 leading-relaxed [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-neutral-1000 [&>h2]:mt-4 [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-2 [&>ul]:pl-5 [&>ul>li]:list-disc"
+                />
               ) : (
                 <p className="text-base text-neutral-600">Content coming soon.</p>
               )}
@@ -104,14 +87,14 @@ export default async function BlogPostPage({
                 </p>
               </div>
 
-              {post.relatedPosts && post.relatedPosts.length > 0 && (
+              {relatedPosts.length > 0 && (
                 <div className="flex flex-col gap-4">
                   <h3 className="text-sm font-semibold text-neutral-1000 uppercase tracking-wider">
                     Related Posts
                   </h3>
-                  {post.relatedPosts.map((related) => (
+                  {relatedPosts.map((related) => (
                     <Link
-                      key={related._id}
+                      key={related.id}
                       href={`/blog/${related.slug}`}
                       className="text-sm text-neutral-500 hover:text-neutral-1000 transition-colors py-2 border-b border-neutral-100 last:border-0"
                     >

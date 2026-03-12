@@ -2,23 +2,14 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ALL_TREATMENTS_QUERY } from "@/sanity/lib/queries";
+import { payloadFetchAll } from "@/lib/payload/client";
+import type { Treatment } from "@/lib/payload/types";
 
 export const metadata: Metadata = { title: "Treatments | Patientfy" };
 
-type Treatment = {
-  _id: string;
-  title: string;
-  description: string;
-  slug: string;
-  image: string | null;
-};
-
 export default async function TreatmentsPage() {
-  const treatments = await sanityFetch<Treatment[]>({
-    query: ALL_TREATMENTS_QUERY,
-    tags: ["treatment"],
+  const treatments = await payloadFetchAll<Treatment>("treatments", {
+    sort: "title",
   });
 
   return (
@@ -39,7 +30,7 @@ export default async function TreatmentsPage() {
         <div className="container-large padding-global">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {treatments.map((t) => (
-              <div key={t._id} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
+              <div key={t.id} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
                 <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center placeholder-cross">
                   <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
                 </div>

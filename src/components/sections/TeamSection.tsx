@@ -10,11 +10,11 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 gsap.registerPlugin(ScrollTrigger);
 
 type TeamMember = {
-  _id: string;
+  id: number | string;
   name: string;
-  role: string;
+  role?: string;
   slug: string;
-  image: string | null;
+  image?: { url: string } | null;
 };
 
 export default function TeamSection({ team }: { team: TeamMember[] }) {
@@ -118,7 +118,7 @@ export default function TeamSection({ team }: { team: TeamMember[] }) {
         >
           <div ref={carouselRef} className="flex gap-5 w-max pr-[calc(100vw-100%)]">
             {team.map((member) => (
-              <div key={member._id} className="flex-shrink-0 snap-start w-[280px] lg:w-[300px]">
+              <div key={member.id} className="flex-shrink-0 snap-start w-[280px] lg:w-[300px]">
                 <Link
                   href={`/about-us/team/${member.slug}`}
                   className="group block bg-neutral-50 rounded-xl border border-neutral-200 hover:border-neutral-400 transition-all duration-300 card-hover overflow-hidden"

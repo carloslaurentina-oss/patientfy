@@ -1,22 +1,14 @@
 import Link from "next/link";
 import Eyebrow from "@/components/ui/Eyebrow";
 import AnimateOnScroll, { StaggerChildren } from "@/components/ui/AnimateOnScroll";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ALL_SERVICES_QUERY } from "@/sanity/lib/queries";
-
-type Service = {
-  _id: string;
-  title: string;
-  description: string;
-  slug: string;
-  image: string | null;
-};
+import { payloadFetchAll } from "@/lib/payload/client";
+import type { Service } from "@/lib/payload/types";
 
 export default async function ServicesSection() {
-  const services = await sanityFetch<Service[]>({
-    query: ALL_SERVICES_QUERY,
-    tags: ["service"],
+  const services = await payloadFetchAll<Service>("services", {
+    sort: "title",
   });
+
   return (
     <section className="py-16 lg:py-24 bg-white relative">
       <div className="container-large padding-global">
@@ -47,7 +39,7 @@ export default async function ServicesSection() {
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" stagger={0.08}>
             {services.map((service) => (
               <Link
-                key={service._id}
+                key={service.id}
                 href={`/services/${service.slug}`}
                 className="group bg-neutral-50 rounded-xl flex flex-col hover:bg-neutral-100/80 transition-colors duration-300 overflow-hidden"
               >

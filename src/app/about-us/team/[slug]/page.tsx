@@ -2,21 +2,11 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { TEAM_MEMBER_BY_SLUG_QUERY } from "@/sanity/lib/queries";
-import { PortableText } from "@portabletext/react";
+import { payloadFetchBySlug } from "@/lib/payload/client";
+import type { TeamMember } from "@/lib/payload/types";
+import RichText from "@/components/ui/RichText";
 
 export const dynamic = "force-dynamic";
-
-type TeamMember = {
-  _id: string;
-  name: string;
-  role: string;
-  slug: string;
-  image: string | null;
-  bio: any[];
-  seo: { title: string; description: string } | null;
-};
 
 export async function generateMetadata({
   params,
@@ -24,11 +14,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const member = await sanityFetch<TeamMember | null>({
-    query: TEAM_MEMBER_BY_SLUG_QUERY,
-    params: { slug },
-    tags: ["teamMember"],
-  });
+  const member = await payloadFetchBySlug<TeamMember>("team-members", slug);
   return { title: member?.seo?.title || `${member?.name || "Team Member"} | Patientfy` };
 }
 
@@ -38,11 +24,7 @@ export default async function TeamMemberPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const member = await sanityFetch<TeamMember | null>({
-    query: TEAM_MEMBER_BY_SLUG_QUERY,
-    params: { slug },
-    tags: ["teamMember"],
-  });
+  const member = await payloadFetchBySlug<TeamMember>("team-members", slug);
 
   if (!member) notFound();
 
@@ -75,9 +57,10 @@ export default async function TeamMemberPage({
                 </h2>
               </div>
               {member.bio ? (
-                <div className="text-base text-neutral-600 flex flex-col gap-4 [&>p]:leading-relaxed">
-                  <PortableText value={member.bio} />
-                </div>
+                <RichText
+                  content={member.bio}
+                  className="text-base text-neutral-600 flex flex-col gap-4 [&>p]:leading-relaxed"
+                />
               ) : (
                 <p className="text-base text-neutral-600">
                   Biography coming soon.

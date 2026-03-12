@@ -2,27 +2,14 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Link from "next/link";
 import CTASection from "@/components/sections/CTASection";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ALL_LOCATIONS_QUERY } from "@/sanity/lib/queries";
+import { payloadFetchAll } from "@/lib/payload/client";
+import type { Location } from "@/lib/payload/types";
 
 export const metadata: Metadata = { title: "Locations | Patientfy" };
 
-type Location = {
-  _id: string;
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  phone: string;
-  slug: string;
-  hours: any;
-};
-
 export default async function LocationsPage() {
-  const locations = await sanityFetch<Location[]>({
-    query: ALL_LOCATIONS_QUERY,
-    tags: ["location"],
+  const locations = await payloadFetchAll<Location>("locations", {
+    sort: "order",
   });
 
   return (
@@ -44,7 +31,7 @@ export default async function LocationsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {locations.map((location) => (
               <div
-                key={location._id}
+                key={location.id}
                 className="border border-neutral-200 rounded-xl p-8 flex flex-col gap-5 hover:border-neutral-400 transition-colors"
               >
                 <div className="flex items-center gap-3">
@@ -73,7 +60,7 @@ export default async function LocationsPage() {
                     Book Now
                   </Link>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address + " " + location.city + ", " + location.state + " " + location.zip)}`}
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((location.address || "") + " " + (location.city || "") + ", " + (location.state || "") + " " + (location.zip || ""))}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-neutral-1000 underline underline-offset-4 hover:text-neutral-600 transition-colors flex items-center"

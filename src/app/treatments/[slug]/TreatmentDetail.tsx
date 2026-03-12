@@ -6,12 +6,12 @@ import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 
 type Treatment = {
-  _id: string;
+  id: number;
   title: string;
-  description: string;
+  description?: string;
   slug: string;
-  accordionItems: { _key: string; title: string; content: string }[] | null;
-  faqs: { _key: string; question: string; answer: string }[] | null;
+  accordionItems?: { title: string; content: string; id?: string }[] | null;
+  faqs?: { question: string; answer: string; id?: string }[] | null;
 };
 
 function Accordion({ items }: { items: { title: string; content: string }[] }) {

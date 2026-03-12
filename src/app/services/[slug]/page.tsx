@@ -2,28 +2,10 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { SERVICE_BY_SLUG_QUERY } from "@/sanity/lib/queries";
+import { payloadFetchBySlug } from "@/lib/payload/client";
+import type { Service, Treatment } from "@/lib/payload/types";
 
 export const dynamic = "force-dynamic";
-
-type Treatment = {
-  _id: string;
-  title: string;
-  description: string;
-  slug: string;
-  image: string | null;
-};
-
-type Service = {
-  _id: string;
-  title: string;
-  description: string;
-  slug: string;
-  image: string | null;
-  treatments: Treatment[] | null;
-  seo: { title: string; description: string } | null;
-};
 
 export async function generateMetadata({
   params,
@@ -31,11 +13,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = await sanityFetch<Service | null>({
-    query: SERVICE_BY_SLUG_QUERY,
-    params: { slug },
-    tags: ["service"],
-  });
+  const service = await payloadFetchBySlug<Service>("services", slug);
   return { title: service?.seo?.title || `${service?.title || "Service"} | Patientfy` };
 }
 
@@ -45,15 +23,11 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = await sanityFetch<Service | null>({
-    query: SERVICE_BY_SLUG_QUERY,
-    params: { slug },
-    tags: ["service"],
-  });
+  const service = await payloadFetchBySlug<Service>("services", slug);
 
   if (!service) notFound();
 
-  const treatments = service.treatments || [];
+  const treatments = (service.treatments || []) as Treatment[];
 
   return (
     <>
@@ -84,7 +58,7 @@ export default async function ServiceDetailPage({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {treatments.map((treatment) => (
                   <div
-                    key={treatment._id}
+                    key={treatment.id}
                     className="border border-neutral-200 bg-white rounded-xl flex flex-col overflow-hidden"
                   >
                     <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center placeholder-cross">

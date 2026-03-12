@@ -2,24 +2,16 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ALL_SERVICES_QUERY } from "@/sanity/lib/queries";
+import { payloadFetchAll } from "@/lib/payload/client";
+import type { Service } from "@/lib/payload/types";
 
 export const metadata: Metadata = { title: "Services | Patientfy" };
 
-type Service = {
-  _id: string;
-  title: string;
-  description: string;
-  slug: string;
-  image: string | null;
-};
-
 export default async function ServicesPage() {
-  const services = await sanityFetch<Service[]>({
-    query: ALL_SERVICES_QUERY,
-    tags: ["service"],
+  const services = await payloadFetchAll<Service>("services", {
+    sort: "title",
   });
+
   return (
     <>
       <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 bg-neutral-50 text-neutral-1000">
@@ -38,7 +30,7 @@ export default async function ServicesPage() {
         <div className="container-large padding-global">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-              <div key={service._id} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
+              <div key={service.id} className="border border-neutral-200 rounded-xl flex flex-col overflow-hidden">
                 <div className="aspect-[4/3] bg-neutral-100 flex items-center justify-center placeholder-cross">
                   <span className="text-neutral-400 text-xs uppercase tracking-widest">Image</span>
                 </div>

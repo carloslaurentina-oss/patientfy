@@ -2,25 +2,14 @@ import type { Metadata } from "next";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ALL_BLOG_POSTS_QUERY } from "@/sanity/lib/queries";
+import { payloadFetchAll } from "@/lib/payload/client";
+import type { BlogPost } from "@/lib/payload/types";
 
 export const metadata: Metadata = { title: "Blog | Patientfy" };
 
-type BlogPost = {
-  _id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  slug: string;
-  publishedAt: string;
-  featuredImage: string | null;
-};
-
 export default async function BlogPage() {
-  const posts = await sanityFetch<BlogPost[]>({
-    query: ALL_BLOG_POSTS_QUERY,
-    tags: ["blogPost"],
+  const posts = await payloadFetchAll<BlogPost>("blog-posts", {
+    sort: "-publishedAt",
   });
 
   return (
@@ -42,7 +31,7 @@ export default async function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
               <Link
-                key={post._id}
+                key={post.id}
                 href={`/blog/${post.slug}`}
                 className="group border border-neutral-200 rounded-xl flex flex-col overflow-hidden hover:border-neutral-400 transition-colors"
               >
@@ -52,9 +41,11 @@ export default async function BlogPage() {
                 <div className="p-6 flex flex-col gap-3 flex-1">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-semibold text-neutral-1000 uppercase tracking-wider">{post.category}</span>
-                    <span className="text-xs text-neutral-400">
-                      {new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                    </span>
+                    {post.publishedAt && (
+                      <span className="text-xs text-neutral-400">
+                        {new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                      </span>
+                    )}
                   </div>
                   <h2 className="text-lg font-semibold text-neutral-1000 group-hover:text-neutral-600 transition-colors">{post.title}</h2>
                   <p className="text-sm text-neutral-500 flex-1">{post.excerpt}</p>

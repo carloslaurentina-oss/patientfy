@@ -1,7 +1,7 @@
 import Eyebrow from "@/components/ui/Eyebrow";
 import AnimateOnScroll, { StaggerChildren } from "@/components/ui/AnimateOnScroll";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ALL_TESTIMONIALS_QUERY } from "@/sanity/lib/queries";
+import { payloadFetchAll } from "@/lib/payload/client";
+import type { Testimonial } from "@/lib/payload/types";
 
 const StarIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-neutral-1000">
@@ -18,18 +18,9 @@ const QuoteIcon = () => (
   </svg>
 );
 
-type Testimonial = {
-  _id: string;
-  quote: string;
-  authorName: string;
-  authorMeta: string;
-  rating: number;
-};
-
 export default async function TestimonialsSection() {
-  const testimonials = await sanityFetch<Testimonial[]>({
-    query: ALL_TESTIMONIALS_QUERY,
-    tags: ["testimonial"],
+  const testimonials = await payloadFetchAll<Testimonial>("testimonials", {
+    sort: "order",
   });
 
   return (
@@ -59,7 +50,7 @@ export default async function TestimonialsSection() {
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.1}>
             {testimonials.map((t) => (
               <div
-                key={t._id}
+                key={t.id}
                 className="group bg-white border border-neutral-200 rounded-xl p-8 flex flex-col gap-5 hover:border-neutral-300 transition-colors duration-300 relative"
               >
                 <QuoteIcon />
