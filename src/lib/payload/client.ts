@@ -1,5 +1,5 @@
 const PAYLOAD_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || "http://localhost:3000";
-const TENANT_SLUG = process.env.TENANT_SLUG || "";
+const TENANT_ID = process.env.TENANT_ID || "";
 
 type PayloadQuery = {
   collection: string;
@@ -31,9 +31,9 @@ export async function payloadFetch<T>(
 
   if (sort) params.set("sort", sort);
 
-  // Auto-add tenant filter if TENANT_SLUG is set
-  if (TENANT_SLUG) {
-    params.set("where[tenant.slug][equals]", TENANT_SLUG);
+  // Auto-add tenant filter if TENANT_ID is set
+  if (TENANT_ID) {
+    params.set("where[tenant][equals]", TENANT_ID);
   }
 
   // Serialize where conditions
